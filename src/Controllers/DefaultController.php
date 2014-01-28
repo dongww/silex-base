@@ -10,8 +10,8 @@ namespace Controllers;
 
 class DefaultController
 {
-    public function indexAction()
+    public function indexAction($name)
     {
-        return 'Hello Silex!';
+        return sprintf('Hello %s!', $name);
     }
 } 
