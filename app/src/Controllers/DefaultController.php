@@ -7,10 +7,11 @@
 
 namespace Controllers;
 
+use SilexBase\Core\Application;
 
 class DefaultController
 {
-    public function indexAction($name)
+    public function indexAction(Application $app, $name)
     {
         return sprintf('Hello %s!', $name);
     }
