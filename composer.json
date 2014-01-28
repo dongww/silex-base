@@ -1,0 +1,12 @@
+{
+    "require": {
+        "silex/silex": "*",
+        "symfony/yaml": "*",
+        "symfony/config": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    }
+}
