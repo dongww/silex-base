@@ -20,11 +20,15 @@ class Application extends baseApp
         $this['app_path'] = realpath($rootPath . '/app');
         $this['data_path'] = $this['app_path'] . '/data';
         $this['config_path'] = $this['app_path'] . '/config';
+        $this['view_path'] = $this['app_path'] . '/views';
+        $this['cache_path'] = $this['data_path'] . '/cache';
 
         $this->initConfig();
         $this->initRoutes();
 
         $this['debug'] = $this['config.main']['debug'];
+
+        $this->initProviders();
     }
 
     protected function initRoutes()
@@ -42,5 +46,11 @@ class Application extends baseApp
         });
 
         $this['config.main'] = $this['config_factory']->getConfig('main');
+    }
+
+    protected function initProviders()
+    {
+        $app = $this;
+        require_once $this['config_path'] . '/providers.php';
     }
 } 

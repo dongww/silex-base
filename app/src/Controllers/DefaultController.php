@@ -13,6 +13,8 @@ class DefaultController
 {
     public function indexAction(Application $app, $name)
     {
-        return sprintf('Hello %s!', $name);
+        return $app['twig']->render('Default/index.twig', array(
+            'name' => $name
+        ));
     }
 } 

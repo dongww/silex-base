@@ -1,3 +1,7 @@
 home:
-    path: /{name}
+    path: /
+    defaults: { _controller: '\Controllers\DefaultController::indexAction', name: Silex }
+
+hello:
+    path: /hello/{name}
     defaults: { _controller: '\Controllers\DefaultController::indexAction', name: Silex }
