@@ -3,8 +3,8 @@
         "silex/silex": "*",
         "symfony/yaml": "*",
         "symfony/config": "*",
-        "twig/twig": ">=1.8,<2.0-dev",
         "symfony/twig-bridge": "~2.3",
+        "symfony/monolog-bridge": "~2.3",
         "silex/web-profiler": "1.0.*@dev"
     },
     "autoload": {
