@@ -14,6 +14,8 @@ $app->register(new \Silex\Provider\UrlGeneratorServiceProvider());
 
 $app->register(new \Silex\Provider\ValidatorServiceProvider());
 
+$app->register(new Silex\Provider\SessionServiceProvider());
+
 if ($app['debug']) {
     $app->register(new \Silex\Provider\MonologServiceProvider(), array(
         'monolog.logfile' => $app['cache_path'] . '/logs/debug.log',
