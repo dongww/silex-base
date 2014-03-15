@@ -1,2 +1,10 @@
 debug: true
 debug_path: '/_profiler'
+
+#mail 设置
+#mail_host: localhost
+#mail_port: 25
+#mail_username: ~
+#mail_password: ~
+#mail_encryption: ~
+#mail_auth_mode: ~
