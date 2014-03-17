@@ -10,7 +10,11 @@ $timer->start();
 
 $app = new SilexBase\Core\Application($rootPath);
 
-$app->run();
+if ($app['debug']) {
+    $app->run();
+} else {
+    $app['http_cache']->run();
+}
 
 $timer->stop();
 echo "页面执行时间: " . $timer->spent() . " 毫秒";

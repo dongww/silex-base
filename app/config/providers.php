@@ -49,9 +49,9 @@ $app->register(new Silex\Provider\SessionServiceProvider());
 /***********************
  * http 缓存
  **********************/
-//$app->register(new Silex\Provider\HttpCacheServiceProvider(), array(
-//    'http_cache.cache_dir' => $app['cache_path'] . '/http',
-//));
+$app->register(new Silex\Provider\HttpCacheServiceProvider(), array(
+    'http_cache.cache_dir' => $app['cache_path'] . '/http',
+));
 
 /***********************
  * HttpFragment
@@ -93,4 +93,7 @@ if ($app['config.main']['debug_bar']) {
         'profiler.cache_dir' => $app['cache_path'] . '/profiler',
         'profiler.mount_prefix' => $app['config.main']['debug_path'], // this is the default
     ));
+}
+if ($app['debug']) {
+    $app->register(new Whoops\Provider\Silex\WhoopsServiceProvider);
 }

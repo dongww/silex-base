@@ -8,13 +8,16 @@
 namespace Controllers;
 
 use SilexBase\Core\Application;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController
 {
     public function indexAction(Application $app, $name)
     {
-        return $app['twig']->render('Default/index.twig', array(
+        return new Response($app['twig']->render('Default/index.twig', array(
             'name' => $name
+        )), 200, array(
+            'Cache-Control' => 's-maxage=5',
         ));
     }
-} 
+}

@@ -6,7 +6,8 @@
         "symfony/twig-bridge": "~2.3",
         "symfony/monolog-bridge": "~2.3",
         "silex/web-profiler": "1.0.*@dev",
-        "doctrine/common": "~2.4"
+        "doctrine/common": "~2.4",
+        "filp/whoops": "1.*"
     },
     "autoload": {
         "psr-0": {
