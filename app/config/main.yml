@@ -1,4 +1,5 @@
 debug: true
+debug_bar: false
 debug_path: '/_profiler'
 
 #mail 设置

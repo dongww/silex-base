@@ -78,7 +78,7 @@ $app->register(new Silex\Provider\SessionServiceProvider());
 /***********************
  * Debug
  **********************/
-if ($app['debug']) {
+if ($app['config.main']['debug_bar']) {
     /***********************
      * 日志
      **********************/
