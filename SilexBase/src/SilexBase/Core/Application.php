@@ -35,6 +35,22 @@ class Application extends baseApp
         }
 
         $this->initProviders();
+
+        if (!$this['debug']) {
+            $this->error(function (\Exception $e, $code) {
+                switch ($code) {
+                    case 404: //路径不存在
+                        return $this['twig']->render('Error/404.twig');
+                        break;
+                    case 403: //无访问权限
+                        return $this['twig']->render('Error/403.twig');
+                        break;
+                    default:
+                        //其他错误
+                        return $this['twig']->render('Error/error.twig');
+                }
+            });
+        }
     }
 
     protected function initRoutes()
