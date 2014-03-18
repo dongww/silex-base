@@ -9,6 +9,7 @@ namespace SilexBase\Core;
 
 use Silex\Application as baseApp;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
 use SilexBase\Core\Config;
 
@@ -38,17 +39,17 @@ class Application extends baseApp
             $this->error(function (\Exception $e, $code) {
                 switch ($code) {
                     case 404: //路径不存在
-                        $errorView = '404.twig';
+                        $errorView = '_404.twig';
                         break;
                     case 403: //无访问权限
-                        $errorView = '403.twig';
+                        $errorView = '_403.twig';
                         break;
                     default:
                         //其他错误
-                        $errorView = 'error.twig';
+                        $errorView = '_error.twig';
                 }
 
-                return $this['twig']->render('Error/' . $errorView);
+                return new Response($this['twig']->render('Error/' . $errorView));
             });
         }
     }

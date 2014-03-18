@@ -1,8 +1,8 @@
 <?php
-$silexBasePath = __DIR__ . '/../SilexBase/vendor/autoload.php';
+$silexBasePath = __DIR__ . '/../SilexBase';
 $rootPath = __DIR__ . '/..';
 
-$loader = require_once $silexBasePath;
+$loader = require_once $silexBasePath . '/vendor/autoload.php';
 $loader->add('', $rootPath . '/app/src');
 
 $timer = new SilexBase\Core\Timer();
@@ -17,4 +17,4 @@ $app = new SilexBase\Core\Application(array(
 $app->run();
 
 $timer->stop();
-echo "页面执行时间: " . $timer->spent() . " 毫秒";
+$timer->output();

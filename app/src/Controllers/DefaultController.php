@@ -17,8 +17,8 @@ class DefaultController extends Controller
     {
         return new Response($app['twig']->render('Default/index.twig', array(
             'name' => $name
-        )), 200, array(
+        ))/*, 200, array(
             'Cache-Control' => 's-maxage=5',
-        ));
+        )*/);
     }
 }
