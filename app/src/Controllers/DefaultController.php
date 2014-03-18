@@ -9,8 +9,9 @@ namespace Controllers;
 
 use SilexBase\Core\Application;
 use Symfony\Component\HttpFoundation\Response;
+use SilexBase\Core\Controller;
 
-class DefaultController
+class DefaultController extends Controller
 {
     public function indexAction(Application $app, $name)
     {
