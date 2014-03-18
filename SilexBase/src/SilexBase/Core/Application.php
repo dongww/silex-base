@@ -14,10 +14,10 @@ use SilexBase\Core\Config;
 
 class Application extends baseApp
 {
-    public function __construct($rootPath)
+    public function __construct(array $values = array())
     {
-        parent::__construct();
-        $this['app_path'] = realpath($rootPath . '/app');
+        parent::__construct($values);
+        $this['app_path'] = realpath($this['root_path'] . '/app');
         $this['data_path'] = $this['app_path'] . '/data';
         $this['config_path'] = $this['app_path'] . '/config';
         $this['view_path'] = $this['app_path'] . '/views';
@@ -25,8 +25,6 @@ class Application extends baseApp
 
         $this->initConfig();
         $this->initRoutes();
-
-        $this['debug'] = $this['config.main']['debug'];
 
         if ($this['debug']) {
             error_reporting(E_ALL ^ E_NOTICE);
