@@ -9,7 +9,9 @@ namespace Controllers;
 
 use SilexBase\Core\Application;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use SilexBase\Core\Controller;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class DefaultController extends Controller
 {
@@ -20,5 +22,40 @@ class DefaultController extends Controller
         ))/*, 200, array(
             'Cache-Control' => 's-maxage=5',
         )*/);
+    }
+
+    public function formAction(Application $app, Request $request)
+    {
+        $data = array(
+            'name' => '张三',
+            'email' => 'abc@gmail.com',
+        );
+
+        $form = $app['form.factory']->createBuilder('form', $data)
+            ->add('name', 'text', array(
+                'constraints' => array(new Assert\NotBlank(), new Assert\Length(array('min' => 2))),
+                'label' => '姓名'
+            ))
+            ->add('email')
+            ->add('gender', 'choice', array(
+                'choices' => array(1 => 'male', 2 => 'female'),
+                'expanded' => true,
+            ))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            print_r($data);
+
+            // redirect somewhere
+//            return $app->redirect($app['url_generator']->generate('home'));
+        }
+
+        return $app['twig']->render('Default/form.twig', array(
+            'form' => $form->createView()
+        ));
     }
 }

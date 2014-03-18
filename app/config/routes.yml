@@ -2,6 +2,7 @@ home:
     path: /
     defaults: { _controller: '\Controllers\DefaultController::indexAction', name: Silex }
 
-hello:
-    path: /hello/{name}
-    defaults: { _controller: '\Controllers\DefaultController::indexAction', name: Silex }
+form_test:
+    path: /form
+    defaults: { _controller: '\Controllers\DefaultController::formAction' }
+    methods:  [POST|GET]

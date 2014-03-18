@@ -29,11 +29,6 @@ $app->register(new \Silex\Provider\ServiceControllerServiceProvider());
 $app->register(new \Silex\Provider\UrlGeneratorServiceProvider());
 
 /***********************
- * 验证
- **********************/
-//$app->register(new \Silex\Provider\ValidatorServiceProvider());
-
-/***********************
  * Session
  **********************/
 $app->register(new Silex\Provider\SessionServiceProvider());
@@ -49,9 +44,22 @@ $app->register(new Silex\Provider\SessionServiceProvider());
 //));
 
 /***********************
+ * 验证
+ **********************/
+$app->register(new \Silex\Provider\ValidatorServiceProvider());
+
+/***********************
  * 表单
  **********************/
-//$app->register(new Silex\Provider\FormServiceProvider());
+$app->register(new Silex\Provider\FormServiceProvider());
+
+/***********************
+ * 多语言
+ **********************/
+$app->register(new Silex\Provider\TranslationServiceProvider(), array(
+    'translator.messages' => array(),
+    'translator.domains' => array(),
+));
 
 /***********************
  * http 缓存
