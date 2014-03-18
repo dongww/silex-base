@@ -21,7 +21,7 @@ $app->register(new \Silex\Provider\TwigServiceProvider(), array(
 /***********************
  * ServiceController
  **********************/
-$app->register(new \Silex\Provider\ServiceControllerServiceProvider());
+//$app->register(new \Silex\Provider\ServiceControllerServiceProvider());
 
 /***********************
  * Url 生成
@@ -91,7 +91,7 @@ $app->register(new Silex\Provider\HttpCacheServiceProvider(), array(
 //);
 
 /***********************
- * Debug
+ * Debug条
  **********************/
 if ($app['config.main']['debug_bar']) {
     /***********************
