@@ -25,9 +25,7 @@ class Application extends baseApp
         $this['view_path'] = $this['app_path'] . '/views';
         $this['cache_path'] = $this['data_path'] . '/cache';
 
-
         $this->initConfig();
-        $this->initRoutes();
 
         if ($this['debug']) {
             error_reporting(E_ALL ^ E_NOTICE);
@@ -52,6 +50,7 @@ class Application extends baseApp
             });
         }
 
+        $this->initRoutes();
         $this->initProviders();
     }
 
