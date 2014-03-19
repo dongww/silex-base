@@ -17,6 +17,7 @@ class DefaultController extends Controller
 {
     public function indexAction(Application $app, $name)
     {
+        $app->d('hello~');
         return new Response($app['twig']->render('Default/index.twig', array(
             'name' => $name
         ))/*, 200, array(

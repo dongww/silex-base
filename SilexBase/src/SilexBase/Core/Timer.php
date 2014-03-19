@@ -36,7 +36,7 @@ class Timer
 
     public function output()
     {
-        echo '<div style="display: block;position: fixed;right: 0;bottom: 0;background-color: #ccc">执行时间：', $this->spent(), '秒</div>';
+        return '执行时间：' . $this->spent() . '秒';
     }
 }
  

@@ -11,7 +11,8 @@ use Silex\Application as baseApp;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
-use SilexBase\Core\Config;
+//use SilexBase\Core\Config;
+use DebugBar\StandardDebugBar;
 
 class Application extends baseApp
 {
@@ -24,18 +25,16 @@ class Application extends baseApp
         $this['view_path'] = $this['app_path'] . '/views';
         $this['cache_path'] = $this['data_path'] . '/cache';
 
+
         $this->initConfig();
         $this->initRoutes();
 
         if ($this['debug']) {
             error_reporting(E_ALL ^ E_NOTICE);
+            $this['debug_bar'] = new StandardDebugBar();
+            $this['debugbarRenderer'] = $this['debug_bar']->getJavascriptRenderer();
         } else {
             error_reporting(0);
-        }
-
-        $this->initProviders();
-
-        if (!$this['debug']) {
             $this->error(function (\Exception $e, $code) {
                 switch ($code) {
                     case 404: //路径不存在
@@ -52,6 +51,8 @@ class Application extends baseApp
                 return new Response($this['twig']->render('Error/' . $errorView));
             });
         }
+
+        $this->initProviders();
     }
 
     protected function initRoutes()
@@ -75,5 +76,24 @@ class Application extends baseApp
     {
         $app = $this;
         require_once $this['config_path'] . '/providers.php';
+    }
+
+    public function d($data)
+    {
+        if (!$this['debug']) {
+            return;
+        }
+
+        $this['debug_bar']['messages']->addMessage($data);
+    }
+
+    public function debugBar()
+    {
+        if (!$this['debug']) {
+            return;
+        }
+
+        echo $this['debugbarRenderer']->renderHead();
+        echo $this['debugbarRenderer']->render();
     }
 } 
