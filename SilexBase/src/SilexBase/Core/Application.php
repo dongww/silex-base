@@ -16,6 +16,8 @@ use DebugBar\StandardDebugBar;
 
 class Application extends baseApp
 {
+    const VERSION = '0.1';
+
     public function __construct(array $values = array())
     {
         parent::__construct($values);
