@@ -32,7 +32,7 @@ class Application extends baseApp
      * 初始化 Provider （在 app/config/providers.php 中进行配置）、
      *
      *
-     * @param array $values
+     * @param array $values 附加的 key=>value 参数，若已存在则覆盖
      */
     public function __construct(array $values = array())
     {
@@ -113,7 +113,7 @@ class Application extends baseApp
     /**
      * 增加调试信息
      *
-     * @param array|string|object $data 任何数据
+     * @param array|string|number|object $data 任何数据
      */
     public function d($data)
     {

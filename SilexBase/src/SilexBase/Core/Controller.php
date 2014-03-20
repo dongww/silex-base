@@ -25,8 +25,8 @@ abstract class Controller
      */
     public function redirect($url, $info = '操作成功！')
     {
-        $out = '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <script>alert("' . $info . '");window.location.href = "' . $url . '";</script>';
+        $out = sprintf('<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <script>alert("%s");window.location.href = "%s";</script>', $info, $url);
         return $out;
     }
 }
