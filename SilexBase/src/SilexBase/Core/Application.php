@@ -12,6 +12,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
 use DebugBar\StandardDebugBar;
+use Whoops\Provider\Silex\WhoopsServiceProvider;
 
 /**
  * 继承于 Silex Application，
@@ -36,20 +37,25 @@ class Application extends baseApp
     public function __construct(array $values = array())
     {
         parent::__construct($values);
+
+        if ($this['debug']) {
+            $this->register(new WhoopsServiceProvider);
+        }
+
         $this['app_path'] = realpath($this['root_path'] . '/app');
         $this['data_path'] = $this['app_path'] . '/data';
         $this['config_path'] = $this['app_path'] . '/config';
         $this['view_path'] = $this['app_path'] . '/views';
         $this['cache_path'] = $this['data_path'] . '/cache';
 
-        $this->initConfig();
-
         if ($this['debug']) {
             error_reporting(E_ALL ^ E_NOTICE);
+
             $this['debug_bar'] = new StandardDebugBar();
             $this['debugbarRenderer'] = $this['debug_bar']->getJavascriptRenderer();
         } else {
             error_reporting(0);
+
             $this->error(function (\Exception $e, $code) {
                 switch ($code) {
                     case 404: //路径不存在
@@ -67,6 +73,7 @@ class Application extends baseApp
             });
         }
 
+        $this->initConfig();
         $this->initRoutes();
         $this->initProviders();
     }
@@ -123,7 +130,7 @@ class Application extends baseApp
     public function debugBar()
     {
         if (!$this['debug']) {
-            return;
+            return null;
         }
 
         echo $this['debugbarRenderer']->renderHead();

@@ -1,10 +1,4 @@
 <?php
-/***********************
- * Whoops 错误捕获
- **********************/
-if ($app['debug']) {
-    $app->register(new Whoops\Provider\Silex\WhoopsServiceProvider);
-}
 
 /***********************
  * ServiceController
@@ -49,6 +43,7 @@ $app->register(new Silex\Provider\TranslationServiceProvider(), array(
     'translator.domains' => array(
         'messages' => array(
             'zh' => $app['config_factory']->getConfig('translator/zh'),
+//            'fr' => $app['config_factory']->getConfig('translator/fr'),
         ),
     ),
 ));

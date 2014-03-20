@@ -8,8 +8,8 @@
 
 namespace SilexBase\Core;
 
-
 use Symfony\Component\Yaml\Yaml;
+use SilexBase\Exception\Exception;
 
 /**
  * 配置文件类，负责从配置文件读取配置
@@ -38,9 +38,15 @@ class Config
      * 例如：main、admin/main
      *
      * @return array
+     * @throws \SilexBase\Exception\Exception
      */
     public function getConfig($name)
     {
+        $file = $this->configPath . '/' . $name . '.yml';
+        if (!file_exists($file)) {
+            throw new Exception('配置文件不存在：' . $file);
+        }
+
         return Yaml::parse($this->configPath . '/' . $name . '.yml');
     }
-} 
+}
