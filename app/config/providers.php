@@ -7,21 +7,9 @@ if ($app['debug']) {
 }
 
 /***********************
- * Twig
- **********************/
-$app->register(new \Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => $app['view_path'],
-    'twig.options' => array(
-        'cache' => $app['cache_path'] . '/twig',
-        'strict_variables' => false,
-        'debug' => $app['debug']
-    )
-));
-
-/***********************
  * ServiceController
  **********************/
-//$app->register(new \Silex\Provider\ServiceControllerServiceProvider());
+$app->register(new \Silex\Provider\ServiceControllerServiceProvider());
 
 /***********************
  * Url 生成
@@ -97,26 +85,6 @@ $app->register(new Silex\Provider\HttpCacheServiceProvider(), array(
 //);
 
 /***********************
- * web 分析器
- **********************/
-if ($app['config.main']['debug']['web_profiler']) {
-    /***********************
-     * 日志
-     **********************/
-    $app->register(new \Silex\Provider\MonologServiceProvider(), array(
-        'monolog.logfile' => $app['cache_path'] . '/logs/debug.log',
-    ));
-
-    /***********************
-     * 分析器 信息条
-     **********************/
-    $app->register(new \Silex\Provider\WebProfilerServiceProvider(), array(
-        'profiler.cache_dir' => $app['cache_path'] . '/profiler',
-        'profiler.mount_prefix' => $app['config.main']['debug']['profiler_path'], // this is the default
-    ));
-}
-
-/***********************
  * 安全设置
  **********************/
 $app->register(new Silex\Provider\SecurityServiceProvider(), array(
@@ -142,3 +110,35 @@ $app['security.access_rules'] = array(
     array('^/admin/general', 'ROLE_USER'),
     array('^/admin', 'ROLE_ADMIN'),
 );
+
+/***********************
+ * Twig
+ **********************/
+$app->register(new \Silex\Provider\TwigServiceProvider(), array(
+    'twig.path' => $app['view_path'],
+    'twig.options' => array(
+        'cache' => $app['cache_path'] . '/twig',
+        'strict_variables' => false,
+        'debug' => $app['debug']
+    )
+));
+
+/***********************
+ * web 分析器
+ **********************/
+if ($app['config.main']['debug']['web_profiler']) {
+    /***********************
+     * 日志
+     **********************/
+    $app->register(new \Silex\Provider\MonologServiceProvider(), array(
+        'monolog.logfile' => $app['cache_path'] . '/logs/debug.log',
+    ));
+
+    /***********************
+     * 分析器 信息条
+     **********************/
+    $app->register(new \Silex\Provider\WebProfilerServiceProvider(), array(
+        'profiler.cache_dir' => $app['cache_path'] . '/profiler',
+        'profiler.mount_prefix' => $app['config.main']['debug']['profiler_path'], // this is the default
+    ));
+}
