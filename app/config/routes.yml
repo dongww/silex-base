@@ -6,3 +6,11 @@ form_test:
     path: /form
     defaults: { _controller: '\Controllers\DefaultController::formAction' }
     methods:  [POST|GET]
+
+admin_index:
+    path: /admin
+    defaults: { _controller: '\Controllers\AdminController::indexAction' }
+
+login:
+    path: /login
+    defaults: { _controller: '\Controllers\DefaultController::loginAction' }

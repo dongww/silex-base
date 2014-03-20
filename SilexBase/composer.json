@@ -9,6 +9,7 @@
         "symfony/validator": "~2.3",
         "symfony/translation": "~2.3",
         "symfony/locale": "~2.3",
+        "symfony/security": "~2.3",
         "silex/web-profiler": "1.0.*@dev",
         "doctrine/common": "~2.4",
         "filp/whoops": "1.*",

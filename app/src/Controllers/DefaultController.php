@@ -59,4 +59,12 @@ class DefaultController extends Controller
             'form' => $form->createView()
         ));
     }
+
+    public function loginAction(Application $app, Request $request)
+    {
+        return $app['twig']->render('login.twig', array(
+            'error' => $app['translator']->trans($app['security.last_error']($request)),
+            'last_username' => $app['session']->get('_security.last_username'),
+        ));
+    }
 }

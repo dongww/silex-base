@@ -58,7 +58,13 @@ $app->register(new Silex\Provider\FormServiceProvider());
  **********************/
 $app->register(new Silex\Provider\TranslationServiceProvider(), array(
     'translator.messages' => array(),
-    'translator.domains' => array(),
+    'translator.domains' => array(
+        'messages' => array(
+            'zh' => array(
+                'Bad credentials' => '验证错误',
+            ),
+        ),
+    ),
 ));
 
 /***********************
@@ -109,3 +115,30 @@ if ($app['config.main']['debug']['web_profiler']) {
         'profiler.mount_prefix' => $app['config.main']['debug']['profiler_path'], // this is the default
     ));
 }
+
+/***********************
+ * 安全设置
+ **********************/
+$app->register(new Silex\Provider\SecurityServiceProvider(), array(
+    'security.firewalls' => array(
+        'admin' => array(
+            'pattern' => '^/admin',
+            'form' => array('login_path' => '/login', 'check_path' => '/admin/login_check'),
+            'logout' => array('logout_path' => '/admin/logout'),
+//            'http' => true,
+            'users' => array(
+                // 密码为 foo
+                'admin' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg=='),
+            ),
+        ),
+    )
+));
+
+$app['security.role_hierarchy'] = array(
+    'ROLE_ADMIN' => array('ROLE_USER', 'ROLE_ALLOWED_TO_SWITCH'),
+);
+
+$app['security.access_rules'] = array(
+    array('^/admin/general', 'ROLE_USER'),
+    array('^/admin', 'ROLE_ADMIN'),
+);
