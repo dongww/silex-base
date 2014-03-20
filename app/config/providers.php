@@ -87,20 +87,28 @@ $app->register(new Silex\Provider\HttpCacheServiceProvider(), array(
 /***********************
  * 安全设置
  **********************/
-$app->register(new Silex\Provider\SecurityServiceProvider(), array(
-    'security.firewalls' => array(
-        'admin' => array(
-            'pattern' => '^/admin',
-            'form' => array('login_path' => '/login', 'check_path' => '/admin/login_check'),
-            'logout' => array('logout_path' => '/admin/logout'),
-//            'http' => true,
-            'users' => array(
-                // 密码为 foo
-                'admin' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg=='),
-            ),
+$app->register(new Silex\Provider\SecurityServiceProvider());
+
+//是否保留登录状态，如果启用，去掉下一行的注释以及下方remember_me这块的注释
+//$app->register(new Silex\Provider\RememberMeServiceProvider());
+
+$app['security.firewalls'] = array(
+    'admin' => array(
+        'pattern' => '^/admin',
+        'form' => array('login_path' => '/login', 'check_path' => '/admin/login_check'),
+        'logout' => array('logout_path' => '/admin/logout'),
+//        'http' => true,
+//        'remember_me' => array(
+//            'key'                => 'Choose_A_Unique_Random_Key',
+//            'always_remember_me' => true,
+//            /* Other options */
+//        ),
+        'users' => array(
+            // 密码为 foo
+            'admin' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg=='),
         ),
-    )
-));
+    ),
+);
 
 $app['security.role_hierarchy'] = array(
     'ROLE_ADMIN' => array('ROLE_USER', 'ROLE_ALLOWED_TO_SWITCH'),
