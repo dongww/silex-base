@@ -42,11 +42,11 @@ class Config
      */
     public function getConfig($name)
     {
-        $file = $this->configPath . '/' . $name . '.yml';
+        $file = sprintf('%s/%s.yml', $this->configPath, $name);
         if (!file_exists($file)) {
             throw new Exception('配置文件不存在：' . $file);
         }
 
-        return Yaml::parse($this->configPath . '/' . $name . '.yml');
+        return Yaml::parse($file);
     }
 }
