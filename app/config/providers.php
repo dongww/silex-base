@@ -48,9 +48,7 @@ $app->register(new Silex\Provider\TranslationServiceProvider(), array(
     'translator.messages' => array(),
     'translator.domains' => array(
         'messages' => array(
-            'zh' => array(
-                'Bad credentials' => '验证错误',
-            ),
+            'zh' => $app['config_factory']->getConfig('translator/zh'),
         ),
     ),
 ));
