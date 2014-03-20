@@ -82,18 +82,18 @@ $app->register(new Silex\Provider\HttpCacheServiceProvider(), array(
  * 邮件
  **********************/
 //$app['swiftmailer.options'] = array(
-//    'host' => $app['config.main']['mail_host'],
-//    'port' => $app['config.main']['mail_port'],
-//    'username' => $app['config.main']['mail_username'],
-//    'password' => $app['config.main']['mail_password'],
-//    'encryption' => $app['config.main']['mail_encryption'],
-//    'auth_mode' => $app['config.main']['mail_auth_mode']
+//    'host' => $app['config.main']['mail']['mail_host'],
+//    'port' => $app['config.main']['mail']['mail_port'],
+//    'username' => $app['config.main']['mail']['mail_username'],
+//    'password' => $app['config.main']['mail']['mail_password'],
+//    'encryption' => $app['config.main']['mail']['mail_encryption'],
+//    'auth_mode' => $app['config.main']['mail']['mail_auth_mode']
 //);
 
 /***********************
- * Debug条
+ * web 分析器
  **********************/
-if ($app['config.main']['debug_bar']) {
+if ($app['config.main']['debug']['web_profiler']) {
     /***********************
      * 日志
      **********************/
@@ -102,10 +102,10 @@ if ($app['config.main']['debug_bar']) {
     ));
 
     /***********************
-     * Debug 信息条
+     * 分析器 信息条
      **********************/
     $app->register(new \Silex\Provider\WebProfilerServiceProvider(), array(
         'profiler.cache_dir' => $app['cache_path'] . '/profiler',
-        'profiler.mount_prefix' => $app['config.main']['debug_path'], // this is the default
+        'profiler.mount_prefix' => $app['config.main']['debug']['profiler_path'], // this is the default
     ));
 }

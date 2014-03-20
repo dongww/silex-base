@@ -1,11 +1,12 @@
-debug: true
-debug_bar: false
-debug_path: '/_profiler'
+debug:
+  web_profiler: false
+  profiler_path: '/_profiler'
 
-#mail 设置
-#mail_host: localhost
-#mail_port: 25
-#mail_username: ~
-#mail_password: ~
-#mail_encryption: ~
-#mail_auth_mode: ~
+mail:
+  #mail 设置
+  #mail_host: localhost
+  #mail_port: 25
+  #mail_username: ~
+  #mail_password: ~
+  #mail_encryption: ~
+  #mail_auth_mode: ~

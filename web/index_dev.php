@@ -1,4 +1,8 @@
 <?php
+/**
+ * 调试模式下的入口文件
+ */
+
 $silexBasePath = __DIR__ . '/../SilexBase';
 $rootPath = __DIR__ . '/..';
 

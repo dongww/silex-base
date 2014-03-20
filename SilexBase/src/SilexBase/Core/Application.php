@@ -11,13 +11,28 @@ use Silex\Application as baseApp;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
-//use SilexBase\Core\Config;
 use DebugBar\StandardDebugBar;
 
+/**
+ * 继承于 Silex Application，
+ * 负责程序的初始化和运行相关的主要操作
+ *
+ * Class Application
+ * @package SilexBase\Core
+ */
 class Application extends baseApp
 {
     const VERSION = '0.1';
 
+    /**
+     * 构造函数，在 Silex 基础上，增加了一些常用路径的设置、
+     * 更友好的错误和异常处理（包括错误页面的处理）、
+     * 路由配置采用 yml 文件、
+     * 初始化 Provider （在 app/config/providers.php 中进行配置）、
+     *
+     *
+     * @param array $values
+     */
     public function __construct(array $values = array())
     {
         parent::__construct($values);
@@ -56,6 +71,9 @@ class Application extends baseApp
         $this->initProviders();
     }
 
+    /**
+     * 初始化路由配置
+     */
     protected function initRoutes()
     {
         $locator = new FileLocator($this['config_path']);
@@ -63,6 +81,9 @@ class Application extends baseApp
         $this['routes'] = $loader->load('routes.yml');
     }
 
+    /**
+     * 读取主配置文件
+     */
     protected function initConfig()
     {
         $app = $this;
@@ -73,12 +94,20 @@ class Application extends baseApp
         $this['config.main'] = $this['config_factory']->getConfig('main');
     }
 
+    /**
+     * 初始化 Providers
+     */
     protected function initProviders()
     {
         $app = $this;
         require_once $this['config_path'] . '/providers.php';
     }
 
+    /**
+     * 增加调试信息
+     *
+     * @param array|string|object $data 任何数据
+     */
     public function d($data)
     {
         if (!$this['debug']) {
@@ -88,6 +117,9 @@ class Application extends baseApp
         $this['debug_bar']['messages']->addMessage($data);
     }
 
+    /**
+     * 输出 debug bar
+     */
     public function debugBar()
     {
         if (!$this['debug']) {

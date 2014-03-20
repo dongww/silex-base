@@ -32,7 +32,11 @@ class Config
     }
 
     /**
-     * @param $name
+     * 从配置文件读取配置，返回数组
+     *
+     * @param string $name 配置文件的文件名，不包括后缀，可包含路径，
+     * 例如：main、admin/main
+     *
      * @return array
      */
     public function getConfig($name)
