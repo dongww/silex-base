@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
 use DebugBar\StandardDebugBar;
 use Whoops\Provider\Silex\WhoopsServiceProvider;
+use Symfony\Component\Finder\Finder;
 
 /**
  * 继承于 Silex Application，
@@ -79,13 +80,22 @@ class Application extends baseApp
     }
 
     /**
-     * 初始化路由配置
+     * 初始化路由配置，路由配置文件为 yml 格式，
+     * 放在 app/config/routes 目录下面。
+     * 在此目录下可自由组织文件夹和文件名，
      */
     protected function initRoutes()
     {
         $locator = new FileLocator($this['config_path']);
         $loader = new YamlFileLoader($locator);
-        $this['routes'] = $loader->load('routes.yml');
+
+        $finder = new Finder();
+        $finder->files()->in($this['config_path'] . '/routes');
+        foreach ($finder as $file) {
+            $this['routes']->addCollection($loader->load($file->getRealpath()));
+        }
+
+        $this->d($this['routes']);
     }
 
     /**

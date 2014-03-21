@@ -42,7 +42,7 @@ $app->register(new Silex\Provider\TranslationServiceProvider(), array(
     'translator.messages' => array(),
     'translator.domains' => array(
         'messages' => array(
-            'zh' => $app['config_factory']->getConfig('translator/zh'),
+            'zh' => $app['config_factory']->getConfig('translator/' . $app['locale']),
 //            'fr' => $app['config_factory']->getConfig('translator/fr'),
         ),
     ),
