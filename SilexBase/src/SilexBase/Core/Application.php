@@ -26,7 +26,7 @@ use Symfony\Component\Config\Resource\FileResource;
  */
 class Application extends baseApp
 {
-    const VERSION = '0.1';
+    const VERSION = '0.1.0';
 
     /**
      * 构造函数，在 Silex 基础上，增加了一些常用路径的设置、
