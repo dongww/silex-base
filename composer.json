@@ -1,6 +1,6 @@
 {
     "name": "dongww/silex-base",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "type": "project",
     "description": "SilexBase 是以 Silex 为基础构建的骨架程序，可作为中小型项目开发的起点。",
     "require": {
