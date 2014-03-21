@@ -55,7 +55,7 @@ class Application extends baseApp
             error_reporting(E_ALL ^ E_NOTICE);
 
             $this['debug_bar'] = new StandardDebugBar();
-            $this['debugbarRenderer'] = $this['debug_bar']->getJavascriptRenderer();
+            $this['debugbar_renderer'] = $this['debug_bar']->getJavascriptRenderer();
         } else {
             error_reporting(0);
 
@@ -117,11 +117,11 @@ class Application extends baseApp
     protected function initConfig()
     {
         $app = $this;
-        $this['config_factory'] = $this->share(function () use ($app) {
-            return new Config($app['config_path'], $this);
+        $this['configurator'] = $this->share(function () use ($app) {
+            return new Config($app['config_path'], $app);
         });
 
-        $this['config.main'] = $this['config_factory']->getConfig('main');
+        $this['config.main'] = $this['configurator']->getConfig('main');
     }
 
     /**
@@ -156,7 +156,7 @@ class Application extends baseApp
             return null;
         }
 
-        echo $this['debugbarRenderer']->renderHead();
-        echo $this['debugbarRenderer']->render();
+        echo $this['debugbar_renderer']->renderHead();
+        echo $this['debugbar_renderer']->render();
     }
 } 
