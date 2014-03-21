@@ -10,6 +10,8 @@ namespace SilexBase\Core;
 
 use Symfony\Component\Yaml\Yaml;
 use SilexBase\Exception\Exception;
+use Symfony\Component\Config\ConfigCache;
+use Symfony\Component\Config\Resource\FileResource;
 
 /**
  * 配置文件类，负责从配置文件读取配置
@@ -25,10 +27,16 @@ class Config
      * @var string
      */
     protected $configPath;
+    protected $app;
 
-    public function __construct($configPath)
+    /**
+     * @param $configPath
+     * @param Application $app
+     */
+    public function __construct($configPath, Application $app)
     {
         $this->configPath = $configPath;
+        $this->app = $app;
     }
 
     /**
@@ -42,11 +50,22 @@ class Config
      */
     public function getConfig($name)
     {
-        $file = sprintf('%s/%s.yml', $this->configPath, $name);
-        if (!file_exists($file)) {
-            throw new Exception('配置文件不存在：' . $file);
+        $filePath = sprintf('%s/%s.yml', $this->configPath, $name);
+
+        if (!file_exists($filePath)) {
+            throw new Exception('配置文件不存在：' . $filePath);
         }
 
-        return Yaml::parse($file);
+        $cachePath = sprintf('%s/config/%s.php', $this->app['cache_path'], $name);
+        $cache = new ConfigCache($cachePath, $this->app['debug']);
+        $data = null;
+
+        if (!$cache->isFresh()) {
+            $resources = array();
+            $resources[] = new FileResource($filePath);
+            $cache->write(\serialize(Yaml::parse($filePath)), $resources);
+        }
+
+        return \unserialize(file_get_contents($cachePath));
     }
 }

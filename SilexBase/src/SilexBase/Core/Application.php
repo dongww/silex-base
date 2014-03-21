@@ -14,6 +14,8 @@ use Symfony\Component\Routing\Loader\YamlFileLoader;
 use DebugBar\StandardDebugBar;
 use Whoops\Provider\Silex\WhoopsServiceProvider;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Config\ConfigCache;
+use Symfony\Component\Config\Resource\FileResource;
 
 /**
  * 继承于 Silex Application，
@@ -86,16 +88,27 @@ class Application extends baseApp
      */
     protected function initRoutes()
     {
-        $locator = new FileLocator($this['config_path']);
-        $loader = new YamlFileLoader($locator);
+        $cachePath = $this['cache_path'] . '/config/routes.php';
+        $routesCache = new ConfigCache($cachePath, $this['debug']);
 
-        $finder = new Finder();
-        $finder->files()->in($this['config_path'] . '/routes');
-        foreach ($finder as $file) {
-            $this['routes']->addCollection($loader->load($file->getRealpath()));
+        if (!$routesCache->isFresh()) {
+            $locator = new FileLocator($this['config_path']);
+            $loader = new YamlFileLoader($locator);
+
+            $finder = new Finder();
+            $finder->files()->in($this['config_path'] . '/routes');
+
+            $resources = array();
+
+            foreach ($finder as $file) {
+                $resources[] = new FileResource($file->getRealpath());
+                $this['routes']->addCollection($loader->load($file->getRealpath()));
+            }
+
+            $routesCache->write(\serialize($this['routes']), $resources);
+        } else {
+            $this['routes']->addCollection(\unserialize(file_get_contents($cachePath)));
         }
-
-        $this->d($this['routes']);
     }
 
     /**
@@ -105,7 +118,7 @@ class Application extends baseApp
     {
         $app = $this;
         $this['config_factory'] = $this->share(function () use ($app) {
-            return new Config($app['config_path']);
+            return new Config($app['config_path'], $this);
         });
 
         $this['config.main'] = $this['config_factory']->getConfig('main');
