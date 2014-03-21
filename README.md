@@ -2,7 +2,7 @@
 
 ## SilexBase 是什么 ##
 
-SilexBase 是以 Silex 为基础构建的骨架程序，可作为中小项目开发的起点。
+SilexBase 是以 Silex 为基础构建的骨架程序，可作为中小型项目开发的起点。
 
 ## 使用要求 ##
 
