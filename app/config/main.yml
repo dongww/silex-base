@@ -1,12 +1,18 @@
 debug:
-  web_profiler: false
-  profiler_path: '/_profiler'
+    web_profiler: false
+    profiler_path: '/_profiler'
 
-mail:
-  #mail 设置
-  #mail_host: localhost
-  #mail_port: 25
-  #mail_username: ~
-  #mail_password: ~
-  #mail_encryption: ~
-  #mail_auth_mode: ~
+providers:
+    service_controller: true
+    url_generator: true
+    session: true
+    validator: true
+    form: true
+    translation: true
+    http_cache: true
+    serializer: false
+    mail: false
+    doctrine: false
+    security: true
+    remember_me: false
+    twig: true

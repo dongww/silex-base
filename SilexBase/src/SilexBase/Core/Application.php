@@ -16,6 +16,7 @@ use Whoops\Provider\Silex\WhoopsServiceProvider;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Config\ConfigCache;
 use Symfony\Component\Config\Resource\FileResource;
+use Silex\Provider;
 
 /**
  * 继承于 Silex Application，
@@ -130,7 +131,88 @@ class Application extends baseApp
     protected function initProviders()
     {
         $app = $this;
-        require_once $this['config_path'] . '/providers.php';
+        $config = $this['config.main']['providers'];
+
+        if ($config['service_controller']) {
+            $app->register(new Provider\ServiceControllerServiceProvider());
+        }
+
+        if ($config['url_generator']) {
+            $app->register(new Provider\UrlGeneratorServiceProvider());
+        }
+
+        if ($config['session']) {
+            $app->register(new Provider\SessionServiceProvider());
+        }
+
+        if ($config['validator']) {
+            $app->register(new Provider\ValidatorServiceProvider());
+        }
+
+        if ($config['form']) {
+            $app->register(new Provider\FormServiceProvider());
+        }
+
+        if ($config['translation']) {
+            $app->register(new Provider\TranslationServiceProvider(), array(
+                'translator.messages' => array(),
+                'translator.domains' => array(
+                    'messages' => array(
+                        'zh' => $app['configurator']->getConfig('translator/' . $app['locale']),
+                    ),
+                ),
+            ));
+        }
+
+        if ($config['http_cache']) {
+            $app->register(new Provider\HttpCacheServiceProvider(), array(
+                'http_cache.cache_dir' => $app['cache_path'] . '/http',
+            ));
+        }
+
+        if ($config['serializer']) {
+            $app->register(new Provider\SerializerServiceProvider());
+        }
+
+        if ($config['mail']) {
+            $app->register(new Provider\SwiftmailerServiceProvider());
+        }
+
+        if ($config['doctrine']) {
+            $app->register(new Provider\DoctrineServiceProvider());
+        }
+
+        if ($config['security']) {
+            $app->register(new Provider\SecurityServiceProvider());
+
+            if ($config['remember_me']) {
+                $app->register(new Provider\RememberMeServiceProvider());
+            }
+        }
+
+        if ($config['twig']) {
+            $app->register(new Provider\TwigServiceProvider(), array(
+                'twig.path' => $app['view_path'],
+                'twig.options' => array(
+                    'cache' => $app['cache_path'] . '/twig',
+                    'strict_variables' => false,
+                    'debug' => $app['debug']
+                )
+            ));
+        }
+
+        if ($app['config.main']['debug']['web_profiler']) {
+            $app->register(new Provider\MonologServiceProvider(), array(
+                'monolog.logfile' => $app['cache_path'] . '/logs/debug.log',
+            ));
+
+            $app->register(new Provider\WebProfilerServiceProvider(), array(
+                'profiler.cache_dir' => $app['cache_path'] . '/profiler',
+                'profiler.mount_prefix' => $app['config.main']['debug']['profiler_path'], // this is the default
+            ));
+        }
+
+        require_once $this['config_path'] . '/provider_options.php';
     }
 
     /**
