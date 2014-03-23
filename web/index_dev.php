@@ -3,6 +3,8 @@
  * 调试模式下的入口文件
  */
 
+date_default_timezone_set('Asia/Shanghai');
+
 $silexBasePath = __DIR__ . '/../SilexBase';
 $rootPath = __DIR__ . '/..';
 
