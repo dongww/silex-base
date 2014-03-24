@@ -80,6 +80,7 @@ class Application extends baseApp
         $this->initConfig();
         $this->initRoutes();
         $this->initProviders();
+        $this->initEvents();
     }
 
     /**
@@ -213,6 +214,13 @@ class Application extends baseApp
         }
 
         require_once $this['config_path'] . '/provider_options.php';
+    }
+
+    protected function initEvents()
+    {
+        $app = $this;
+
+        require_once $this['app_path'] . '/event/events.php';
     }
 
     /**

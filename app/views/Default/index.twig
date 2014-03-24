@@ -1,4 +1,10 @@
+<html>
+<head>
+    <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+</head>
 <body>
+
 <p>Hello, {{ name|default('Silex') }}!</p>
 <a href="{{ path('admin_index') }}">管理员页面</a>
 </body>
+</html>
