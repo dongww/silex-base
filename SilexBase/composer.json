@@ -1,8 +1,8 @@
 {
     "require": {
         "silex/silex": "*",
-        "symfony/yaml": "2.4",
-        "symfony/config": "2.4",
+        "symfony/yaml": "~2.4",
+        "symfony/config": "~2.4",
         "symfony/twig-bridge": "~2.4",
         "symfony/monolog-bridge": "~2.4",
         "symfony/form": "~2.4",
