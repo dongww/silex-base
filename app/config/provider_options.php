@@ -13,6 +13,9 @@ if ($config['mail']) {
     );
 }
 
+/***********************
+ * Doctrine 设置
+ **********************/
 if ($config['doctrine']) {
     $app['db.options'] = array(
         'driver' => 'pdo_sqlite',
