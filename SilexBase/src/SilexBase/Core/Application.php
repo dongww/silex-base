@@ -11,7 +11,6 @@ use Silex\Application as baseApp;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
-use DebugBar\StandardDebugBar;
 use Whoops\Provider\Silex\WhoopsServiceProvider;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Config\ConfigCache;
@@ -54,9 +53,6 @@ class Application extends baseApp
 
         if ($this['debug']) {
             error_reporting(E_ALL ^ E_NOTICE);
-
-            $this['debug_bar'] = new StandardDebugBar();
-            $this['debugbar_renderer'] = $this['debug_bar']->getJavascriptRenderer();
         } else {
             error_reporting(0);
 
@@ -200,6 +196,10 @@ class Application extends baseApp
                     'debug' => $app['debug']
                 )
             ));
+        }
+
+        if ($config['http_fragment']) {
+            $app->register(new Provider\HttpFragmentServiceProvider());
         }
 
         if ($app['config.main']['debug']['web_profiler']) {

@@ -16,3 +16,4 @@ providers:
     security: true
     remember_me: false
     twig: true
+    http_fragment: true

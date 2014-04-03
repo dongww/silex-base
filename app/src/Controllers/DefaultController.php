@@ -25,6 +25,11 @@ class DefaultController extends Controller
         )*/);
     }
 
+    public function footerAction(Application $app)
+    {
+        return $app['twig']->render('Default/footer.twig');
+    }
+
     public function formAction(Application $app, Request $request)
     {
         $data = array(
