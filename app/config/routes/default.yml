@@ -1,16 +1,16 @@
 home:
     path: /
-    defaults: { _controller: '\Controllers\DefaultController::indexAction', name: Silex }
+    defaults: { _controller: '\Controller\DefaultController::indexAction', name: Silex }
 
 footer:
     path: /footer
-    defaults: { _controller: '\Controllers\DefaultController::footerAction'}
+    defaults: { _controller: '\Controller\DefaultController::footerAction'}
 
 form_test:
     path: /form
-    defaults: { _controller: '\Controllers\DefaultController::formAction' }
+    defaults: { _controller: '\Controller\DefaultController::formAction' }
     methods:  [POST|GET]
 
 login:
     path: /login
-    defaults: { _controller: '\Controllers\DefaultController::loginAction' }
+    defaults: { _controller: '\Controller\DefaultController::loginAction' }

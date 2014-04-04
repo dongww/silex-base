@@ -5,7 +5,7 @@
  * Time: 上午10:11
  */
 
-namespace Controllers;
+namespace Controller;
 
 use SilexBase\Core\Application;
 use Symfony\Component\HttpFoundation\Response;
