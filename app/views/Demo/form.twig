@@ -1,0 +1,8 @@
+{% form_theme form 'Form/div_layout.html.twig' %}
+{% extends "Demo/base.twig" %}
+{% block main %}
+    <form action="#" method="post">
+        {{ form_widget(form) }}
+        <input type="submit" name="submit"/>
+    </form>
+{% endblock %}

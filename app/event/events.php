@@ -17,8 +17,9 @@ $this->on(KernelEvents::REQUEST, function (GetResponseEvent $event) use ($app) {
 //        }));
 //    }
     $app['base_path'] = $event->getRequest()->getBasePath();
-    if ($app['debug']) {
+
+    if ($app['debug'] && !isset($app['debugbar_renderer'])) {
         $app['debug_bar'] = new StandardDebugBar();
-        $app['debugbar_renderer'] = $this['debug_bar']->getJavascriptRenderer($app['base_path'] . '/js/debug-bar');
+        $app['debugbar_renderer'] = $app['debug_bar']->getJavascriptRenderer($app['base_path'] . '/js/debug-bar');
     }
 });

@@ -1,4 +1,5 @@
-<body>
-<p>admin 页面</p>
-<a href="{{ path('admin_logout') }}">退出登录</a>
-</body>
+{% extends "Demo/base.twig" %}
+{% block main %}
+    <p>admin 页面</p>
+    <a href="{{ path('admin_logout') }}">退出登录</a>
+{% endblock %}

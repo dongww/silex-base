@@ -16,6 +16,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Config\ConfigCache;
 use Symfony\Component\Config\Resource\FileResource;
 use Silex\Provider;
+use DebugBar\StandardDebugBar;
 
 /**
  * 继承于 Silex Application，
@@ -53,6 +54,8 @@ class Application extends baseApp
 
         if ($this['debug']) {
             error_reporting(E_ALL ^ E_NOTICE);
+
+
         } else {
             error_reporting(0);
 
