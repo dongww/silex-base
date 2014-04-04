@@ -17,3 +17,5 @@ providers:
     remember_me: false
     twig: true
     http_fragment: true
+
+user_providers: ~

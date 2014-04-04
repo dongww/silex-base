@@ -13,6 +13,12 @@ use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use DebugBar\StandardDebugBar;
 
+/**
+ * DebugBar Provider
+ *
+ * Class DebugBarProvider
+ * @package SilexBase\Provider
+ */
 class DebugBarProvider implements ServiceProviderInterface
 {
     protected $app;
