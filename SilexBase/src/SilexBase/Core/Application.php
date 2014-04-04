@@ -16,7 +16,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Config\ConfigCache;
 use Symfony\Component\Config\Resource\FileResource;
 use Silex\Provider;
-use DebugBar\StandardDebugBar;
+use SilexBase\Provider\TwigCoreExtension;
 
 /**
  * 继承于 Silex Application，
@@ -182,14 +182,6 @@ class Application extends baseApp
             $app->register(new Provider\DoctrineServiceProvider());
         }
 
-        if ($config['security']) {
-            $app->register(new Provider\SecurityServiceProvider());
-
-            if ($config['remember_me']) {
-                $app->register(new Provider\RememberMeServiceProvider());
-            }
-        }
-
         if ($config['twig']) {
             $app->register(new Provider\TwigServiceProvider(), array(
                 'twig.path' => $app['view_path'],
@@ -199,6 +191,16 @@ class Application extends baseApp
                     'debug' => $app['debug']
                 )
             ));
+
+            $app['twig']->addExtension(new TwigCoreExtension());
+        }
+
+        if ($config['security']) {
+            $app->register(new Provider\SecurityServiceProvider());
+
+            if ($config['remember_me']) {
+                $app->register(new Provider\RememberMeServiceProvider());
+            }
         }
 
         if ($config['http_fragment']) {
