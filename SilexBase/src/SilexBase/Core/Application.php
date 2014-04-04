@@ -79,7 +79,6 @@ class Application extends baseApp
         $this->initConfig();
         $this->initRoutes();
         $this->initProviders();
-        $this->initEvents();
     }
 
     /**
@@ -132,6 +131,8 @@ class Application extends baseApp
     {
         $app = $this;
         $config = $this['config.main']['providers'];
+
+        $app->register(new \SilexBase\Provider\DebugBarProvider());
 
         if ($config['service_controller']) {
             $app->register(new Provider\ServiceControllerServiceProvider());
@@ -219,13 +220,6 @@ class Application extends baseApp
         }
 
         require_once $this['config_path'] . '/provider_options.php';
-    }
-
-    protected function initEvents()
-    {
-        $app = $this;
-
-        require_once $this['app_path'] . '/event/events.php';
     }
 
     /**
