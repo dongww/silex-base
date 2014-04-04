@@ -18,4 +18,5 @@ providers:
     twig: true
     http_fragment: true
 
-user_providers: ~
+user_providers:
+    - '\Provider\SayHelloProvider'

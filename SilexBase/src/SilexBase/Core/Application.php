@@ -27,7 +27,7 @@ use SilexBase\Provider\TwigCoreExtension;
  */
 class Application extends baseApp
 {
-    const VERSION = '0.1.0';
+    const VERSION = '0.2.0';
 
     /**
      * 构造函数，在 Silex 基础上，增加了一些常用路径的设置、
@@ -219,7 +219,19 @@ class Application extends baseApp
             ));
         }
 
+        $this->initUserProviders();
+
         require_once $this['config_path'] . '/provider_options.php';
+    }
+
+    /**
+     * 初始化用户自定义 Provider
+     */
+    public function initUserProviders()
+    {
+        foreach ($this['config.main']['user_providers'] as $provider) {
+            $this->register(new $provider());
+        }
     }
 
     /**

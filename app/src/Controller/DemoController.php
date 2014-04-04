@@ -18,6 +18,7 @@ class DemoController extends Controller
     public function indexAction(Application $app, $name)
     {
         $app->d('这是演示页面首页。');
+        $app->d('用户自定义 Provider 演示：' . $app['hello']('SilexBase'));
         return new Response($app['twig']->render('Demo/index.twig', array(
             'name' => $name
         ))/*, 200, array(
