@@ -54,8 +54,6 @@ class Application extends baseApp
 
         if ($this['debug']) {
             error_reporting(E_ALL ^ E_NOTICE);
-
-
         } else {
             error_reporting(0);
 
@@ -132,7 +130,9 @@ class Application extends baseApp
         $app = $this;
         $config = $this['config.main']['providers'];
 
-        $app->register(new \SilexBase\Provider\DebugBarProvider());
+        if ($this['debug']) {
+            $app->register(new \SilexBase\Provider\DebugBarProvider());
+        }
 
         if ($config['service_controller']) {
             $app->register(new Provider\ServiceControllerServiceProvider());
@@ -246,18 +246,5 @@ class Application extends baseApp
         }
 
         $this['debug_bar']['messages']->addMessage($data);
-    }
-
-    /**
-     * 输出 debug bar
-     */
-    public function debugBar()
-    {
-        if (!$this['debug']) {
-            return null;
-        }
-
-        echo $this['debugbar_renderer']->renderHead();
-        echo $this['debugbar_renderer']->render();
     }
 } 
