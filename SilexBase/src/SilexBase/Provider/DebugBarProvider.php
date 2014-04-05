@@ -29,6 +29,11 @@ class DebugBarProvider implements ServiceProviderInterface
         $this->app = $app;
     }
 
+    /**
+     * 注册debugBar
+     *
+     * @param GetResponseEvent $event
+     */
     public function onKernelRequest(GetResponseEvent $event)
     {
         $app = $this->app;
@@ -40,6 +45,11 @@ class DebugBarProvider implements ServiceProviderInterface
         }
     }
 
+    /**
+     * 输出debugBar，只有当页面有</body>标签时有效。
+     *
+     * @param FilterResponseEvent $event
+     */
     public function onKernelResponse(FilterResponseEvent $event)
     {
         $basePath = $event->getRequest()->getBasePath();
