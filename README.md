@@ -19,6 +19,21 @@ SilexBase 是以 Silex 为基础构建的骨架程序，可作为中小型项目
 
 就这么简单！
 
+## 配置 SilexBase
+
+## SilexBase 特点
+
+## 更多帮助
+
+* [目录结构说明](docs/struct.md)
+* [路由配置](docs/routing.md)
+* [如何使用表单](docs/form)
+* [如何配置防火墙](docs/security.md)
+* [代码调试](docs/debug.md)
+* [扩展Twig](docs/twig.md)
+* [EventListener](docs/event_listener.md)
+* [silex 官网](http://silex.sensiolabs.org)
+
 ## 关于 ##
 
 作者：董伟伟
