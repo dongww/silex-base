@@ -7,10 +7,10 @@
 
 namespace Controller;
 
-use SilexBase\Core\Application;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
 use SilexBase\Core\Controller;
+use SilexBase\Core\Application;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class DemoController extends Controller

@@ -7,16 +7,16 @@
 
 namespace SilexBase\Core;
 
+use Silex\Provider;
 use Silex\Application as baseApp;
+use SilexBase\Provider\TwigCoreExtension;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Config\ConfigCache;
+use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
 use Whoops\Provider\Silex\WhoopsServiceProvider;
-use Symfony\Component\Finder\Finder;
-use Symfony\Component\Config\ConfigCache;
-use Symfony\Component\Config\Resource\FileResource;
-use Silex\Provider;
-use SilexBase\Provider\TwigCoreExtension;
 
 /**
  * 继承于 Silex Application，
@@ -159,7 +159,7 @@ class Application extends baseApp
                 'translator.messages' => array(),
                 'translator.domains' => array(
                     'messages' => array(
-                        'zh' => $app['configurator']->getConfig('translator/' . $app['locale']),
+                        $app['locale'] => $app['configurator']->getConfig('translator/' . $app['locale']),
                     ),
                 ),
             ));

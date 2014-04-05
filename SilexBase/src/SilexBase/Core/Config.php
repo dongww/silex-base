@@ -8,8 +8,8 @@
 
 namespace SilexBase\Core;
 
-use Symfony\Component\Yaml\Yaml;
 use SilexBase\Exception\Exception;
+use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Config\ConfigCache;
 use Symfony\Component\Config\Resource\FileResource;
 

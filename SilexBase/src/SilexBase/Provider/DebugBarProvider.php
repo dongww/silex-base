@@ -11,8 +11,8 @@ use Silex\Application;
 use Silex\ServiceProviderInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-use DebugBar\StandardDebugBar;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use DebugBar\StandardDebugBar;
 
 /**
  * DebugBar Provider
