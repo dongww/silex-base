@@ -4,6 +4,8 @@
 
 SilexBase 是以 Silex 为基础构建的骨架程序，可作为中小型项目开发的起点。
 
+## SilexBase 特点
+
 ## 使用要求 ##
 
 理论上，SilexBase 必须符合 Silex 的最低要求。如果条件允许，我强烈建议你使用 PHP5.4 以上的版本进行开发，以获得更高的性能。
@@ -21,7 +23,6 @@ SilexBase 是以 Silex 为基础构建的骨架程序，可作为中小型项目
 
 ## 配置 SilexBase
 
-## SilexBase 特点
 
 ## 更多帮助
 
