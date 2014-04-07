@@ -42,6 +42,12 @@ class DebugBarProvider implements ServiceProviderInterface
             $app['debug_bar'] = $app->share(function () {
                 return new StandardDebugBar();
             });
+
+            if ($app['config.main']['providers']['doctrine']) {
+                $debugStack = new \Doctrine\DBAL\Logging\DebugStack();
+                $app['db']->getConfiguration()->setSQLLogger($debugStack);
+                $app['debug_bar']->addCollector(new \DebugBar\Bridge\DoctrineCollector($debugStack));
+            }
         }
     }
 

@@ -14,7 +14,8 @@
         "silex/web-profiler": "1.0.*@dev",
         "doctrine/common": "~2.4",
         "filp/whoops": "1.*",
-        "maximebf/debugbar": "1.*"
+        "maximebf/debugbar": "1.*",
+        "doctrine/dbal": "~2.4"
     },
     "autoload": {
         "psr-0": {
