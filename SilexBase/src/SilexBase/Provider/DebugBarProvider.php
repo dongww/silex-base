@@ -59,10 +59,11 @@ class DebugBarProvider implements ServiceProviderInterface
     public function onKernelResponse(FilterResponseEvent $event)
     {
         $basePath = $event->getRequest()->getBasePath();
-        $render = $this->app['debug_bar']->getJavascriptRenderer($basePath . '/js/debug-bar');
+        $render = $this->app['debug_bar']->getJavascriptRenderer();
 
         ob_start();
-        echo $render->renderHead();
+        echo '<style>', $render->dumpCssAssets(), '</style>',
+        '<script type="text/javascript">', $render->dumpJsAssets(), '</script>';
         echo $render->render();
         $debugContent = ob_get_contents();
         ob_end_clean();
