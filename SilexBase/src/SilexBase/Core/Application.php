@@ -131,6 +131,10 @@ class Application extends baseApp
         $app = $this;
         $config = $this['config.main']['providers'];
 
+        if ($config['doctrine']) {
+            $app->register(new Provider\DoctrineServiceProvider());
+        }
+
         if ($this['debug']) {
             $app->register(new \SilexBase\Provider\DebugBarProvider());
         }
@@ -184,9 +188,7 @@ class Application extends baseApp
             $app->register(new Provider\SwiftmailerServiceProvider());
         }
 
-        if ($config['doctrine']) {
-            $app->register(new Provider\DoctrineServiceProvider());
-        }
+
 
         if ($config['twig']) {
             $app->register(new Provider\TwigServiceProvider(), array(

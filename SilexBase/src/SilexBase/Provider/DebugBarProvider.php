@@ -32,14 +32,14 @@ class DebugBarProvider implements ServiceProviderInterface
                 return new StandardDebugBar();
             });
 
-            if ($app['config.main']['providers']['doctrine']) {
+            if (isset($app['db'])) {
                 $debugStack = new \Doctrine\DBAL\Logging\DebugStack();
                 $app['db']->getConfiguration()->setSQLLogger($debugStack);
                 $app['debug_bar']->addCollector(new \DebugBar\Bridge\DoctrineCollector($debugStack));
             }
 
             $app->get('/debugbar/{path}', function ($path) use ($app) {
-                return $app->sendFile($app['debug_bar']->getJavascriptRenderer()->getBasePath() . '/' . $path);
+                return $app->sendFile($app['debug_bar']->getJavascriptRenderer()->getBasePath() . '/' . $path, 200, array('Content-Type' => 'text/plain'));
             })->assert('path', '.+');
         }
     }
