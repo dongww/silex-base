@@ -10,7 +10,6 @@ namespace SilexBase\Provider;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use DebugBar\StandardDebugBar;
 
@@ -27,16 +26,6 @@ class DebugBarProvider implements ServiceProviderInterface
     public function register(Application $app)
     {
         $this->app = $app;
-    }
-
-    /**
-     * 注册debugBar
-     *
-     * @param GetResponseEvent $event
-     */
-    public function onKernelRequest(GetResponseEvent $event)
-    {
-        $app = $this->app;
 
         if (!isset($app['debug_bar'])) {
             $app['debug_bar'] = $app->share(function () {
@@ -48,6 +37,10 @@ class DebugBarProvider implements ServiceProviderInterface
                 $app['db']->getConfiguration()->setSQLLogger($debugStack);
                 $app['debug_bar']->addCollector(new \DebugBar\Bridge\DoctrineCollector($debugStack));
             }
+
+            $app->get('/debugbar/{path}', function ($path) use ($app) {
+                return $app->sendFile($app['debug_bar']->getJavascriptRenderer()->getBasePath() . '/' . $path);
+            })->assert('path', '.+');
         }
     }
 
@@ -68,11 +61,17 @@ class DebugBarProvider implements ServiceProviderInterface
             return;
         }
 
-        $render = $this->app['debug_bar']->getJavascriptRenderer();
+        if ($response->isRedirection()
+            || ($response->headers->has('Content-Type') && false === strpos($response->headers->get('Content-Type'), 'html'))
+            || 'html' !== $request->getRequestFormat()
+        ) {
+            return;
+        }
 
+        $basePath = $event->getRequest()->getBasePath();
+        $render = $this->app['debug_bar']->getJavascriptRenderer($basePath . '/index_dev.php/debugbar');
         ob_start();
-        echo '<style>', $render->dumpCssAssets(), '</style>',
-        '<script type="text/javascript">', $render->dumpJsAssets(), '</script>';
+        echo $render->renderHead();
         echo $render->render();
         $debugContent = ob_get_contents();
         ob_end_clean();
@@ -84,7 +83,6 @@ class DebugBarProvider implements ServiceProviderInterface
 
     public function boot(Application $app)
     {
-        $app['dispatcher']->addListener(KernelEvents::REQUEST, array($this, 'onKernelRequest'), 1000);
         $app['dispatcher']->addListener(KernelEvents::RESPONSE, array($this, 'onKernelResponse'), -1000);
     }
 }

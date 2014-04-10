@@ -15,8 +15,7 @@
         "doctrine/common": "~2.4",
         "filp/whoops": "1.*",
         "maximebf/debugbar": "1.*",
-        "doctrine/dbal": "~2.4",
-        "kriswallsmith/assetic": "~1.1"
+        "doctrine/dbal": "~2.4"
     },
     "autoload": {
         "psr-0": {
