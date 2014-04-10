@@ -68,8 +68,8 @@ class DebugBarProvider implements ServiceProviderInterface
             return;
         }
 
-        $basePath = $event->getRequest()->getBasePath();
-        $render = $this->app['debug_bar']->getJavascriptRenderer($basePath . '/index_dev.php/debugbar');
+        $baseUrl = $event->getRequest()->getBaseUrl();
+        $render = $this->app['debug_bar']->getJavascriptRenderer($baseUrl . '/debugbar');
         ob_start();
         echo $render->renderHead();
         echo $render->render();
