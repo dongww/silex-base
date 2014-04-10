@@ -1,0 +1,6 @@
+Controller\A:
+    properties:
+        name:
+            - Length:
+                  min: 100
+                  minMessage: "Your first name must be at least {{ limit }} characters length"

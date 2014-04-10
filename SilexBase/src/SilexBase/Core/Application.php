@@ -16,6 +16,7 @@ use Symfony\Component\Config\ConfigCache;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
+//use Symfony\Component\Validator\Mapping;
 use Whoops\Provider\Silex\WhoopsServiceProvider;
 
 /**
@@ -148,6 +149,10 @@ class Application extends baseApp
 
         if ($config['validator']) {
             $app->register(new Provider\ValidatorServiceProvider());
+
+//            $app['validator.mapping.class_metadata_factory'] = new Mapping\ClassMetadataFactory(
+//                new Mapping\Loader\YamlFileLoader($this['config_path'] . '/validation.yml')
+//            );
         }
 
         if ($config['form']) {
