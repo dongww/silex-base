@@ -136,7 +136,7 @@ class Application extends baseApp
         }
 
         if ($this['debug']) {
-            $app->register(new \SilexBase\Provider\DebugBarProvider());
+            $app->register(new \SilexBase\Provider\DebugBarServiceProvider());
         }
 
         if ($config['service_controller']) {

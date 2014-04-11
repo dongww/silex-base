@@ -19,7 +19,7 @@ use DebugBar\StandardDebugBar;
  * Class DebugBarProvider
  * @package SilexBase\Provider
  */
-class DebugBarProvider implements ServiceProviderInterface
+class DebugBarServiceProvider implements ServiceProviderInterface
 {
     protected $app;
 
@@ -37,11 +37,9 @@ class DebugBarProvider implements ServiceProviderInterface
                 $app['db']->getConfiguration()->setSQLLogger($debugStack);
                 $app['debug_bar']->addCollector(new \DebugBar\Bridge\DoctrineCollector($debugStack));
             }
-
-            $app->get('/debugbar/{path}', function ($path) use ($app) {
-                return $app->sendFile($app['debug_bar']->getJavascriptRenderer()->getBasePath() . '/' . $path, 200, array('Content-Type' => 'text/plain'));
-            })->assert('path', '.+');
         }
+
+        $app['debug_bar.path'] = isset($app['debug_bar.path']) ? $this->app['debug_bar.path'] : '/debugbar';
     }
 
     /**
@@ -69,7 +67,8 @@ class DebugBarProvider implements ServiceProviderInterface
         }
 
         $baseUrl = $event->getRequest()->getBaseUrl();
-        $render = $this->app['debug_bar']->getJavascriptRenderer($baseUrl . '/debugbar');
+
+        $render = $this->app['debug_bar']->getJavascriptRenderer($baseUrl . $this->app['debug_bar.path']);
         ob_start();
         echo $render->renderHead();
         echo $render->render();
@@ -84,6 +83,10 @@ class DebugBarProvider implements ServiceProviderInterface
     public function boot(Application $app)
     {
         $app['dispatcher']->addListener(KernelEvents::RESPONSE, array($this, 'onKernelResponse'), -1000);
+
+        $app->get($app['debug_bar.path'] . '/{path}', function ($path) use ($app) {
+            return $app->sendFile($app['debug_bar']->getJavascriptRenderer()->getBasePath() . '/' . $path, 200, array('Content-Type' => 'text/plain'));
+        })->assert('path', '.+');
     }
 }
  

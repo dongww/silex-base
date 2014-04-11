@@ -10,7 +10,7 @@ namespace Provider;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 
-class SayHelloProvider implements ServiceProviderInterface
+class SayHelloServiceProvider implements ServiceProviderInterface
 {
     public function register(Application $app)
     {
