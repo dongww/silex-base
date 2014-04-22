@@ -4,12 +4,12 @@
  **********************/
 if ($config['mail']) {
     $app['swiftmailer.options'] = array(
-        'host' => 'localhost',
-        'port' => 25,
-        'username' => null,
-        'password' => null,
+        'host'       => 'localhost',
+        'port'       => 25,
+        'username'   => null,
+        'password'   => null,
         'encryption' => null,
-        'auth_mode' => null,
+        'auth_mode'  => null,
     );
 }
 
@@ -18,14 +18,14 @@ if ($config['mail']) {
  **********************/
 if ($config['doctrine']) {
     $app['db.options'] = array(
-        'driver' => 'pdo_sqlite',
-        'path' => $app['data_path'] . '/db/app.db',
-        'dbname' => '',
-        'host' => '',
-        'user' => '',
+        'driver'   => 'pdo_sqlite',
+        'path'     => $app['data_path'] . '/db/app.db',
+        'dbname'   => '',
+        'host'     => '',
+        'user'     => '',
         'password' => '',
-        'charset' => 'utf8',
-        'port' => '',
+        'charset'  => 'utf8',
+        'port'     => '',
     );
 }
 
@@ -34,13 +34,13 @@ if ($config['doctrine']) {
  **********************/
 
 $app['security.firewalls'] = array(
-    'admin' => array(
+    'admin'     => array(
         'pattern' => '^/admin',
-        'form' => array(
+        'form'    => array(
             'login_path' => '/login',
             'check_path' => '/admin/login_check'
         ),
-        'logout' => array(
+        'logout'  => array(
             'logout_path' => '/admin/logout'
         ),
 //        'http' => true,
@@ -49,12 +49,16 @@ $app['security.firewalls'] = array(
 //            'always_remember_me' => true,
 //            /* Other options */
 //        ),
-        'users' => array(
+        'users'   => array(
             // 密码为 foo
             'admin' => array(
                 'ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg=='
             ),
         ),
+    ),
+    'unsecured' => array(
+        'anonymous' => true,
+        'pattern'   => '^/',
     ),
 );
 
