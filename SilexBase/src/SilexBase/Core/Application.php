@@ -90,12 +90,28 @@ class Application extends baseApp
         $cachePath = $this['cache_path'] . '/config/routes.php';
         $routesCache = new ConfigCache($cachePath, $this['debug']);
 
-        if (!$routesCache->isFresh()) {
-            $locator = new FileLocator($this['config_path']);
-            $loader = new YamlFileLoader($locator);
+        $changed = false;
 
+        if ($this['debug']) {
             $finder = new Finder();
             $finder->files()->in($this['config_path'] . '/routes');
+
+            $metadata = $cachePath . '.meta';
+            if (!is_file($metadata)) {
+                $changed = true;
+            } else {
+                $meta = unserialize(file_get_contents($metadata));
+                $countFile = count($meta);
+
+                if (count($finder) != $countFile) {
+                    $changed = true;
+                }
+            }
+        }
+
+        if ($changed || !$routesCache->isFresh()) {
+            $locator = new FileLocator($this['config_path']);
+            $loader = new YamlFileLoader($locator);
 
             $resources = array();
 
@@ -187,7 +203,6 @@ class Application extends baseApp
         if ($config['mail']) {
             $app->register(new Provider\SwiftmailerServiceProvider());
         }
-
 
 
         if ($config['twig']) {
