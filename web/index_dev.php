@@ -16,11 +16,10 @@ date_default_timezone_set('Asia/Shanghai');
 /**
  * 若要移动 SilexBase 目录的位置，只需修改 $silexBasePath
  */
-$silexBasePath = __DIR__ . '/../SilexBase';
+$silexBasePath = __DIR__ . '/..';
 $rootPath = __DIR__ . '/..';
 
-$loader = require_once $silexBasePath . '/vendor/autoload.php';
-$loader->add('', $rootPath . '/app/src');
+require_once $silexBasePath . '/vendor/autoload.php';
 
 $app = new SilexBase\Core\Application(array(
     'root_path' => $rootPath,

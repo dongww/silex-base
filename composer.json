@@ -4,6 +4,12 @@
     "license": "MIT",
     "description": "SilexBase 是以 Silex 为基础构建的骨架程序，可作为中小型项目开发的起点。",
     "require": {
-        "php": ">=5.3.3"
+        "php": ">=5.3.3",
+        "dongww/silex-base-core": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "": "app/src/"
+        }
     }
 }
