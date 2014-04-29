@@ -13,9 +13,6 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
 
 date_default_timezone_set('Asia/Shanghai');
 
-/**
- * 若要移动 SilexBase 目录的位置，只需修改 $silexBasePath
- */
 $silexBasePath = __DIR__ . '/..';
 $rootPath = __DIR__ . '/..';
 
