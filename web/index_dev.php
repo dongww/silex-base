@@ -18,7 +18,7 @@ $rootPath = __DIR__ . '/..';
 
 require_once $silexBasePath . '/vendor/autoload.php';
 
-$app = new SilexBase\Core\Application(array(
+$app = new App\Application(array(
     'root_path' => $rootPath,
     'debug' => true,
     'locale' => 'zh',
