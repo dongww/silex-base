@@ -10,7 +10,7 @@ providers:
     mail: false
     doctrine: false
     security: true
-    remember_me: false
+    remember_me: true
     twig: true
     http_fragment: true
 

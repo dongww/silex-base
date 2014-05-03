@@ -5,6 +5,8 @@
         {{ error }}
         <input type="text" name="_username" value="{{ last_username }}"/>
         <input type="password" name="_password" value=""/>
+        <input type="checkbox" id="remember_me" name="_remember_me" checked />
+        <label for="remember_me">保持登录</label>
         <input type="submit"/>
     </form>
 {% endblock %}

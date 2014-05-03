@@ -44,11 +44,11 @@ $app['security.firewalls'] = array(
             'logout_path' => '/admin/logout'
         ),
 //        'http' => true,
-//        'remember_me' => array(
-//            'key'                => 'Choose_A_Unique_Random_Key',
-//            'always_remember_me' => true,
-//            /* Other options */
-//        ),
+        'remember_me' => array(
+            'key'                => 'asfd',
+            'always_remember_me' => false,
+            /* Other options */
+        ),
         'users'   => array(
             // 密码为 foo
             'admin' => array(
