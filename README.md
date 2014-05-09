@@ -13,8 +13,7 @@ SilexBase 是以 Silex 为基础构建的骨架程序，可作为中小型项目
 ## 安装方法 ##
 
 1. 下载或克隆文件。
-2. 进入 SilexBase 目录，运行 composer install。
-**SilexBase 目录可放置在任何地方，以便其他程序共享。只需要修改一下 web/index.php | index_dev.php 中的 $silexBasePath 变量即可。**
+2. 运行 composer install。
 3. 如果是 *inux 或 OSX 系统，请将 app/data 目录设置为可写。
 4. 配置好服务器，将 web 目录设为根目录。
 5. 运行。
