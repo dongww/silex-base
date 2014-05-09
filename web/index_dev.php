@@ -21,7 +21,7 @@ require_once $silexBasePath . '/vendor/autoload.php';
 $app = new App\Application(array(
     'root_path' => $rootPath,
     'debug' => true,
-    'locale' => 'zh',
+    'locale' => 'zh_CN',
 ));
 
 $app->run();
