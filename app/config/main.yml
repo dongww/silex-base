@@ -8,7 +8,7 @@ providers:
     http_cache: true
     serializer: false
     mail: false
-    doctrine: false
+    doctrine: true
     security: true
     remember_me: true
     twig: true

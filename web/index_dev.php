@@ -13,9 +13,7 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
 
 date_default_timezone_set('Asia/Shanghai');
 
-$silexBasePath = __DIR__ . '/..';
-$rootPath = __DIR__ . '/..';
-
+require_once 'path.php';
 require_once $silexBasePath . '/vendor/autoload.php';
 
 $app = new App\Application(array(

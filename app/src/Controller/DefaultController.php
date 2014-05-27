@@ -7,7 +7,7 @@
 
 namespace Controller;
 
-use SilexBase\Core\Controller;
+use Dongww\SilexBase\Core\Controller;
 use App\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

@@ -1,0 +1,52 @@
+#数据类型配置文件
+
+# 可用类型:
+# string - 单行文本，最多255个字符
+# integer 整数，例如：142
+# float - 小数，例如:23.01
+# text - 多行文本，纯文本
+# datetime - 日期时间
+# date - 日期
+
+tables:
+    user:
+        fields:
+            username:
+                type: string
+            password:
+                type: string
+    goods:
+        fields:
+            name:
+                type: string
+                required: true
+            price:
+                type: float
+            weight:
+                type: float
+            from:
+                type: float
+        parents: [tree] #多对一关系，可多个写入数组
+        timestamp_able: true #加入created_at, updated_at
+    color:
+        fields:
+            name:
+                type: string
+            value:
+                type: string
+    category:
+        fields:
+            name:
+                type: string
+        tree: true
+    tree:
+        fields:
+            title:
+                type: string
+            memo:
+                type: text
+        tree_able: true #支持树状储存
+
+#多对多关系
+many_many:
+    - [goods, color]

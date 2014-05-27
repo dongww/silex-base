@@ -7,7 +7,7 @@
 
 namespace App;
 
-use SilexBase\Core\Application as baseApp;
+use Dongww\SilexBase\Core\Application as baseApp;
 use Silex\Application as coreApp;
 
 class Application extends baseApp
