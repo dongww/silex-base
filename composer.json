@@ -11,5 +11,8 @@
         "psr-0": {
             "": "app/src/"
         }
-    }
+    },
+    "bin": [
+        "bin/console"
+    ]
 }
