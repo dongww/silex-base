@@ -1,3 +1,3 @@
 #!/usr/bin/env php
 <?php
-include('console.php');
+include('sb.php');

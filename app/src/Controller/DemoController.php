@@ -19,9 +19,9 @@ class DemoController extends Controller
     {
         $app->d('这是演示页面首页。');
         $app->d('用户自定义 Provider 演示：' . $app['hello']('SilexBase'));
-        return new Response($app['twig']->render('Demo/index.twig', array(
+        return new Response($app->render('Demo/index.twig', [
             'name' => $name
-        ))/*, 200, array(
+        ])/*, 200, array(
             'Cache-Control' => 's-maxage=5',
         )*/);
     }
@@ -29,27 +29,27 @@ class DemoController extends Controller
     public function footerAction(Application $app)
     {
         $app->d('这是演示页面页脚。');
-        return $app['twig']->render('Demo/footer.twig');
+        return $app->render('Demo/footer.twig');
     }
 
     public function formAction(Application $app, Request $request)
     {
         $app->d('这是演示表单页面。');
         $data = array(
-            'name' => '张三',
+            'name'  => '张三',
             'email' => 'abc@gmail.com',
         );
 
-        $form = $app['form.factory']->createBuilder('form', $data)
-            ->add('name', 'text', array(
-                'constraints' => array(new Assert\NotBlank(), new Assert\Length(array('min' => 2))),
-                'label' => '姓名'
-            ))
+        $form = $app->form($data)
+            ->add('name', 'text', [
+                'constraints' => [new Assert\NotBlank(), new Assert\Length(['min' => 2])],
+                'label'       => '姓名'
+            ])
             ->add('email')
-            ->add('gender', 'choice', array(
-                'choices' => array(1 => 'male', 2 => 'female'),
+            ->add('gender', 'choice', [
+                'choices'  => [1 => 'male', 2 => 'female'],
                 'expanded' => true,
-            ))
+            ])
             ->getForm();
 
         $form->handleRequest($request);
@@ -63,16 +63,16 @@ class DemoController extends Controller
 //            return $app->redirect($app['url_generator']->generate('home'));
         }
 
-        return $app['twig']->render('Demo/form.twig', array(
+        return $app->render('Demo/form.twig', [
             'form' => $form->createView()
-        ));
+        ]);
     }
 
     public function loginAction(Application $app, Request $request)
     {
         $app->d('这是演示登录页面。');
-        return $app['twig']->render('login.twig', array(
-            'error' => $app['translator']->trans($app['security.last_error']($request)),
+        return $app->render('login.twig', array(
+            'error'         => $app->trans($app['security.last_error']($request)),
             'last_username' => $app['session']->get('_security.last_username'),
         ));
     }

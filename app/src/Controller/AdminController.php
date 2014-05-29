@@ -16,7 +16,7 @@ class AdminController extends Controller
 {
     public function indexAction(Application $app)
     {
-        return $app['twig']->render('Admin/index.twig');
+        return $app->render('Admin/index.twig');
     }
 }
  

@@ -3,21 +3,21 @@
  * 邮件设置选项
  **********************/
 if ($config['mail']) {
-    $app['swiftmailer.options'] = array(
+    $app['swiftmailer.options'] = [
         'host'       => 'localhost',
         'port'       => 25,
         'username'   => null,
         'password'   => null,
         'encryption' => null,
         'auth_mode'  => null,
-    );
+    ];
 }
 
 /***********************
  * Doctrine 设置
  **********************/
 if ($config['doctrine']) {
-    $app['db.options'] = array(
+    $app['db.options'] = [
         'driver'   => 'pdo_mysql',
 //        'driver'   => 'pdo_sqlite',
 //        'path'     => $app['data_path'] . '/db/app.db',
@@ -27,14 +27,14 @@ if ($config['doctrine']) {
         'password' => '',
         'charset'  => 'utf8',
         'port'     => '',
-    );
+    ];
 }
 
 /***********************
  * 安全设置选项
  **********************/
 
-$app['security.firewalls'] = array(
+$app['security.firewalls'] = [
     'admin'     => array(
         'pattern'     => '^/admin',
         'form'        => array(
@@ -61,13 +61,13 @@ $app['security.firewalls'] = array(
         'anonymous' => true,
         'pattern'   => '^/',
     ),
-);
+];
 
-$app['security.role_hierarchy'] = array(
+$app['security.role_hierarchy'] = [
     'ROLE_ADMIN' => array('ROLE_USER', 'ROLE_ALLOWED_TO_SWITCH'),
-);
+];
 
-$app['security.access_rules'] = array(
+$app['security.access_rules'] = [
     array('^/admin/general', 'ROLE_USER'),
     array('^/admin', 'ROLE_ADMIN'),
-);
+];

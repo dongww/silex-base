@@ -17,6 +17,6 @@ class DefaultController extends Controller
 {
     public function indexAction(Application $app)
     {
-        return $app->redirect($app['url_generator']->generate('demo'));
+        return $app->redirect($app->path('demo'));
     }
 }

@@ -5,7 +5,8 @@
     "description": "SilexBase 是以 Silex 为基础构建的骨架程序，可作为中小型项目开发的起点。",
     "require": {
         "php": ">=5.4",
-        "dongww/silex-base-core": "dev-master"
+        "dongww/silex-base-core": "dev-master",
+        "dongww/simple-db": "dev-master"
     },
     "autoload": {
         "psr-0": {
@@ -13,6 +14,6 @@
         }
     },
     "bin": [
-        "bin/console"
+        "bin/sb"
     ]
 }

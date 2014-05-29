@@ -16,9 +16,9 @@ class SayHelloServiceProvider implements ServiceProviderInterface
     {
         $app['hello'] = $app->protect(function ($name) use ($app) {
             $default = 'SilexBase';
-            $name = $name ?: $default;
+            $name    = $name ? $name : $default;
 
-            return 'Hello '.$app->escape($name);
+            return 'Hello ' . $app->escape($name);
         });
     }
 
