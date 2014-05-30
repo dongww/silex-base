@@ -9,7 +9,7 @@
         "dongww/simple-db": "dev-master"
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "": "app/src/"
         }
     },
