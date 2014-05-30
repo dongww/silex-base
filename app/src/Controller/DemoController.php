@@ -19,11 +19,13 @@ class DemoController extends Controller
     {
         $app->d('这是演示页面首页。');
         $app->d('用户自定义 Provider 演示：' . $app['hello']('SilexBase'));
-        return new Response($app->render('Demo/index.twig', [
-            'name' => $name
-        ])/*, 200, array(
-            'Cache-Control' => 's-maxage=5',
-        )*/);
+
+        return $app->render('Demo/index.twig', [
+                'name' => $name
+            ]/*, (new Response())
+                ->setStatusCode(200)
+                ->setSharedMaxAge(5)
+        */);
     }
 
     public function footerAction(Application $app)
