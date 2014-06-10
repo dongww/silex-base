@@ -14,21 +14,21 @@ if ($config['mail']) {
 }
 
 /***********************
- * Doctrine 设置
+ * 数据库参数 设置
  **********************/
-if ($config['doctrine']) {
-    $app['db.options'] = [
-        'driver'   => 'pdo_mysql',
+//if ($config['doctrine']) {
+$app['db.options'] = [
+    'driver'   => 'pdo_mysql',
 //        'driver'   => 'pdo_sqlite',
 //        'path'     => $app['data_path'] . '/db/app.db',
-        'dbname'   => 'dbal_wrap',
-        'host'     => 'localhost',
-        'user'     => 'root',
-        'password' => '',
-        'charset'  => 'utf8',
-        'port'     => '',
-    ];
-}
+    'dbname'   => 'dbal_wrap',
+    'host'     => 'localhost',
+    'user'     => 'root',
+    'password' => '',
+    'charset'  => 'utf8',
+    'port'     => '',
+];
+//}
 
 /***********************
  * 安全设置选项
