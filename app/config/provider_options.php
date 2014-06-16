@@ -35,39 +35,39 @@ $app['db.options'] = [
  **********************/
 
 $app['security.firewalls'] = [
-    'admin'     => array(
+    'admin'     => [
         'pattern'     => '^/admin',
-        'form'        => array(
+        'form'        => [
             'login_path' => '/login',
             'check_path' => '/admin/login_check'
-        ),
-        'logout'      => array(
+        ],
+        'logout'      => [
             'logout_path' => '/admin/logout'
-        ),
+        ],
 //        'http' => true,
-        'remember_me' => array(
+        'remember_me' => [
             'key'                => 'asfd',
             'always_remember_me' => false,
             /* Other options */
-        ),
-        'users'       => array(
+        ],
+        'users'       => [
             // 密码为 foo
-            'admin' => array(
+            'admin' => [
                 'ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg=='
-            ),
-        ),
-    ),
-    'unsecured' => array(
+            ],
+        ],
+    ],
+    'unsecured' => [
         'anonymous' => true,
         'pattern'   => '^/',
-    ),
+    ],
 ];
 
 $app['security.role_hierarchy'] = [
-    'ROLE_ADMIN' => array('ROLE_USER', 'ROLE_ALLOWED_TO_SWITCH'),
+    'ROLE_ADMIN' => ['ROLE_USER', 'ROLE_ALLOWED_TO_SWITCH'],
 ];
 
 $app['security.access_rules'] = [
-    array('^/admin/general', 'ROLE_USER'),
-    array('^/admin', 'ROLE_ADMIN'),
+    ['^/admin/general', 'ROLE_USER'],
+    ['^/admin', 'ROLE_ADMIN'],
 ];
