@@ -1,5 +1,9 @@
 {% extends "Demo/base.twig" %}
 {% block main %}
     <p>admin 页面</p>
+    {% if is_granted('ROLE_ADMIN') %}
+        <p>目前是管理员身份</p>
+    {% endif %}
     <a href="{{ path('admin_logout') }}">退出登录</a>
+
 {% endblock %}
