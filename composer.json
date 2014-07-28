@@ -2,6 +2,14 @@
     "name": "dongww/silex-base",
     "type": "project",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "dongww",
+            "email": "dongww@gmail.com",
+            "homepage": "http://www.dongww.com",
+            "role": "Developer"
+        }
+    ],
     "description": "SilexBase 是以 Silex 为基础构建的骨架程序，可作为中小型项目开发的起点。",
     "require": {
         "php": ">=5.4",
@@ -15,5 +23,13 @@
     },
     "bin": [
         "bin/sb"
-    ]
+    ],
+    "scripts": {
+        "post-install-cmd": [
+            "\"bin/sb\" sb:cache:clean"
+        ],
+        "post-update-cmd": [
+            "\"bin/sb\" sb:cache:clean"
+        ]
+    }
 }

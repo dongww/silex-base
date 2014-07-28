@@ -40,5 +40,14 @@ class CacheCleanCommand extends Command
 
         $tc->clean();
         $output->writeln('Twig caches clean!');
+
+        $rc = new Cleaner\RoutesCleaner(
+            $this->app,
+            $this->app['cache_path'] . '/config/routes.php',
+            $this->app['config_path'] . '/routes'
+        );
+
+        $rc->clean();
+        $output->writeln('Routes caches clean!');
     }
 }
