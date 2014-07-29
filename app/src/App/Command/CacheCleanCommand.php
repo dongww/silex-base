@@ -8,21 +8,12 @@
 namespace App\Command;
 
 use Dongww\SilexBase\Core\Application;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Dongww\SilexBase\Developer\Cleaner;
 
-class CacheCleanCommand extends Command
+class CacheCleanCommand extends CommandAbstract
 {
-    protected $app;
-
-    public function __construct(Application $app)
-    {
-        parent::__construct();
-        $this->app = $app;
-    }
-
     protected function configure()
     {
         $this
