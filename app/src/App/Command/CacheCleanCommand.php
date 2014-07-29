@@ -32,8 +32,6 @@ class CacheCleanCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('Routes caches clean!');
-
         $tc = new Cleaner\TwigCacheCleaner(
             $this->app['cache_path'] . '/twig'
         );

@@ -14,7 +14,8 @@
     "require": {
         "php": ">=5.4",
         "dongww/silex-base-core": "dev-master",
-        "dongww/simple-db": "dev-master"
+        "dongww/simple-db": "dev-master",
+        "symfony/process": "~2.4"
     },
     "autoload": {
         "psr-4": {
@@ -26,10 +27,13 @@
     ],
     "scripts": {
         "post-install-cmd": [
-            "\"bin/sb\" sb:cache:clean"
+            "App\\Composer\\ScriptHandler::clearCache"
         ],
         "post-update-cmd": [
-            "\"bin/sb\" sb:cache:clean"
+            "App\\Composer\\ScriptHandler::clearCache"
         ]
+    },
+    "extra": {
+        "sb-bin-dir": "bin"
     }
 }
