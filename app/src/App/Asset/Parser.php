@@ -15,8 +15,8 @@ use Symfony\Component\Yaml\Yaml;
 class Parser
 { //todo 需要完善，比如 filter 等
     protected static $typeMap = [
-        'file' => 'FileAsset',
-        'glob' => 'GlobAsset',
+        'file' => '\Assetic\Asset\FileAsset',
+        'glob' => '\Assetic\Asset\GlobAsset',
     ];
 
     /**
@@ -33,12 +33,7 @@ class Parser
                 $assets = [];
 
                 foreach ((array)$v['assets'] as $asset) {
-                    $source = $asset['source'];
-
-                    if (!file_exists($source)) {
-                        continue;
-                    }
-
+                    $source = isset($asset['source']) ? $asset['source'] : null;
                     $type = null;
 
                     if (isset($asset['type']) && in_array($asset['type'], self::$typeMap)) {

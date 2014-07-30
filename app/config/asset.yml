@@ -1,3 +1,4 @@
+#例子
 #bootstrap:
 #    assets:
 #        - [source: vendor/twbs/bootstrap/dist/*/*, type: glob, filter: less]
@@ -6,4 +7,4 @@
 
 jquery:
     assets:
-        - [source: vendor/yiisoft/jquery/jquery.min.js, type: file]
+        - {source: vendor/yiisoft/jquery/jquery.min.js, type: file}

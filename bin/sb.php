@@ -17,5 +17,6 @@ $consoleApp = new Application('silex-base');
 $consoleApp->add(new Command\UpdateCommand($conn));
 $consoleApp->add(new App\Command\DbUpdateCommand());
 $consoleApp->add(new App\Command\CacheCleanCommand($app));
+$consoleApp->add(new App\Command\AssetCommand($app));
 
 $consoleApp->run();
