@@ -29,10 +29,12 @@
     ],
     "scripts": {
         "post-install-cmd": [
-            "App\\Composer\\ScriptHandler::clearCache"
+            "App\\Composer\\ScriptHandler::clearCache",
+            "App\\Composer\\ScriptHandler::assetDump"
         ],
         "post-update-cmd": [
-            "App\\Composer\\ScriptHandler::clearCache"
+            "App\\Composer\\ScriptHandler::clearCache",
+            "App\\Composer\\ScriptHandler::assetDump"
         ]
     },
     "extra": {

@@ -14,7 +14,7 @@ SilexBase 是以 Silex 为基础构建的骨架程序，可作为中小型项目
 
 1. 下载或克隆文件。
 2. 运行 composer install。
-3. 如果是 *inux 或 OSX 系统，请将 app/data 目录设置为可写。
+3. 如果是 *inux 或 OSX 系统，请将 app/data 目录设置为可写（如果需要从 vendor 复制资源文件到网站目录，将 web 目录设置为可写）。
 4. 配置好服务器，将 web 目录设为根目录。
 5. 运行 http://domain（产品模式，配置文件会被缓存） 或 http://domain/index_dev.php（开发模式，不被缓存）。
 

@@ -15,22 +15,28 @@ class ScriptHandler
 {
     public static function clearCache(CommandEvent $event)
     {
-        $extra   = $event->getComposer()->getPackage()->getExtra();
-        $binDir  = $extra['sb-bin-dir'];
         $timeout = $event->getComposer()->getConfig()->get('process-timeout');
+        static::executeCommand($event, 'sb:cache:clean', $timeout);
+    }
 
+    public static function assetDump(CommandEvent $event)
+    {
+        $timeout = $event->getComposer()->getConfig()->get('process-timeout');
+        static::executeCommand($event, 'sb:asset:dump', $timeout);
+    }
+
+    protected static function executeCommand(CommandEvent $event, $cmd, $timeout = 300)
+    {
+        $extra  = $event->getComposer()->getPackage()->getExtra();
+        $binDir = $extra['sb-bin-dir'];
         if (!is_dir($binDir)) {
             echo 'The sb-bin-dir (' . $binDir . ') specified in composer.json was not found in ' . getcwd() . ', can not clear the cache.' . PHP_EOL;
 
             return;
         }
 
-        static::executeCommand($event, $binDir, 'sb:cache:clean', $timeout);
-    }
+        $php = escapeshellarg(self::getPhp());
 
-    protected static function executeCommand(CommandEvent $event, $binDir, $cmd, $timeout = 300)
-    {
-        $php     = escapeshellarg(self::getPhp());
         $console = escapeshellarg($binDir . '/sb');
         if ($event->getIO()->isDecorated()) {
             $console .= ' --ansi';
