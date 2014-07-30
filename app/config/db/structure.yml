@@ -43,8 +43,6 @@ tables:
         tree: true
     tree:
         fields:
-            title:
-                type: string
             memo:
                 type: text
         tree_able: true #支持树状储存
