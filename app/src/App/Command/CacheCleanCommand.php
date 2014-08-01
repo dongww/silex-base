@@ -33,7 +33,7 @@ class CacheCleanCommand extends CommandAbstract
         $rc = new Cleaner\RoutesCleaner(
             $this->app,
             $this->app['cache_path'] . '/config/routes.php',
-            $this->app['config_path'] . '/routes'
+            $this->app['src_path'] . '/*/*/_resources/routes'
         );
 
         $rc->clean();

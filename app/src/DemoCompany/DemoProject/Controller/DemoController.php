@@ -5,7 +5,7 @@
  * Time: 上午10:11
  */
 
-namespace Controller;
+namespace DemoCompany\DemoProject\Controller;
 
 use Dongww\SilexBase\Core\Controller;
 use App\Application;
@@ -20,7 +20,7 @@ class DemoController extends Controller
         $app->d('这是演示页面首页。');
         $app->d('用户自定义 Provider 演示：' . $app['hello']('SilexBase'));
 
-        return $app->render('Demo/index.twig', [
+        return $app->render('DemoCompany/DemoProject:index.twig', [
                 'name' => $name
             ]/*, (new Response())
                 ->setStatusCode(200)
@@ -31,7 +31,7 @@ class DemoController extends Controller
     public function footerAction(Application $app)
     {
         $app->d('这是演示页面页脚。');
-        return $app->render('Demo/footer.twig');
+        return $app->render('DemoCompany/DemoProject:footer.twig');
     }
 
     public function formAction(Application $app, Request $request)
@@ -65,7 +65,7 @@ class DemoController extends Controller
 //            return $app->redirect($app['url_generator']->generate('home'));
         }
 
-        return $app->render('Demo/form.twig', [
+        return $app->render('DemoCompany/DemoProject:form.twig', [
             'form' => $form->createView()
         ]);
     }

@@ -5,7 +5,7 @@
  * Time: 下午3:00
  */
 
-namespace Provider;
+namespace DemoCompany\DemoProject\Provider;
 
 use Silex\Application;
 use Silex\ServiceProviderInterface;
@@ -26,4 +26,3 @@ class SayHelloServiceProvider implements ServiceProviderInterface
     {
     }
 }
- 

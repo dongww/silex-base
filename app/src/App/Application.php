@@ -12,11 +12,11 @@ use Silex\Application as coreApp;
 
 class Application extends baseApp
 {
-    use coreApp\TwigTrait;
+    use TwigTrait;
 //    use coreApp\SecurityTrait;
     use coreApp\FormTrait;
     use coreApp\UrlGeneratorTrait;
 //    use coreApp\SwiftmailerTrait;
 //    use coreApp\MonologTrait;
     use coreApp\TranslationTrait;
-} 
+}

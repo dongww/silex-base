@@ -1,3 +1,0 @@
-admin_index:
-    path: /admin
-    defaults: { _controller: '\Controller\AdminController::indexAction' }

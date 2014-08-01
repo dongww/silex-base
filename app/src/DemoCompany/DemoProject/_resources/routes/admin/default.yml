@@ -1,0 +1,3 @@
+admin_index:
+    path: /admin
+    defaults: { _controller: 'DemoCompany\DemoProject\Controller\AdminController::indexAction' }

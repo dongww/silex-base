@@ -15,4 +15,4 @@ providers:
     http_fragment: true
 
 user_providers:
-    - '\Provider\SayHelloServiceProvider'
+    - 'DemoCompany\DemoProject\Provider\SayHelloServiceProvider'

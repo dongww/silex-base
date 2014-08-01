@@ -1,0 +1,20 @@
+home:
+    path: /
+    defaults: { _controller: 'DemoCompany\DemoProject\Controller\DefaultController::indexAction'}
+
+demo:
+    path: /demo
+    defaults: { _controller: 'DemoCompany\DemoProject\Controller\DemoController::indexAction', name: Silex }
+
+footer:
+    path: /footer
+    defaults: { _controller: 'DemoCompany\DemoProject\Controller\DemoController::footerAction'}
+
+form:
+    path: /form
+    defaults: { _controller: 'DemoCompany\DemoProject\Controller\DemoController::formAction' }
+    methods:  [POST|GET]
+
+login:
+    path: /login
+    defaults: { _controller: 'DemoCompany\DemoProject\Controller\DemoController::loginAction' }
