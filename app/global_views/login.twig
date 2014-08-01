@@ -1,4 +1,4 @@
-{% extends "DemoCompany/DemoProject/_resources/views/base.twig" %}
+{% extends "DemoCompany/DemoProject:base.twig" %}
 {% block main %}
     <p>账号：admin，密码：foo</p>
     <form action="{{ path('admin_login_check') }}" method="post">
