@@ -1,3 +1,4 @@
+#设置可用的 Provider
 providers:
     service_controller: true
     url_generator: true
@@ -14,5 +15,26 @@ providers:
     twig: true
     http_fragment: true
 
+#邮件系统参数
+mail_options:
+    host: localhost
+    port: 25
+    username: username
+    password: ~
+    encryption: ~
+    auth_mode: ~
+
+#数据库系统参数
+db_options:
+    driver: pdo_mysql
+    path: ~
+    dbname: dbal_wrap
+    host: localhost
+    user: root
+    password: ~
+    charset: utf8
+    port: ~
+
+#用户自定义 Provider
 user_providers:
     - 'DemoCompany\DemoProject\Provider\SayHelloServiceProvider'
