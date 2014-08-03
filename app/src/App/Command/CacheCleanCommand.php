@@ -7,7 +7,6 @@
 
 namespace App\Command;
 
-use Dongww\SilexBase\Core\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Dongww\SilexBase\Developer\Cleaner;

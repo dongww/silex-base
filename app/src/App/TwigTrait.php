@@ -16,9 +16,9 @@ trait TwigTrait
      *
      * To stream a view, pass an instance of StreamedResponse as a third argument.
      *
-     * @param string $view The view name
-     * @param array $parameters An array of parameters to pass to the view
-     * @param Response $response A Response instance
+     * @param string   $view       The view name
+     * @param array    $parameters An array of parameters to pass to the view
+     * @param Response $response   A Response instance
      *
      * @return Response A Response instance
      */
@@ -44,8 +44,8 @@ trait TwigTrait
     /**
      * Renders a view.
      *
-     * @param string $view The view name
-     * @param array $parameters An array of parameters to pass to the view
+     * @param string $view       The view name
+     * @param array  $parameters An array of parameters to pass to the view
      *
      * @return Response A Response instance
      */

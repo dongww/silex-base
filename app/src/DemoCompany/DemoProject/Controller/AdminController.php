@@ -9,8 +9,6 @@ namespace DemoCompany\DemoProject\Controller;
 
 use Dongww\SilexBase\Core\Controller;
 use App\Application;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class AdminController extends Controller
 {
@@ -19,4 +17,3 @@ class AdminController extends Controller
         return $app->render('DemoCompany/DemoProject:Admin/index.twig');
     }
 }
- 

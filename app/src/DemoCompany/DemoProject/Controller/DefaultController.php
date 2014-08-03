@@ -9,9 +9,6 @@ namespace DemoCompany\DemoProject\Controller;
 
 use Dongww\SilexBase\Core\Controller;
 use App\Application;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Validator\Constraints as Assert;
 
 class DefaultController extends Controller
 {

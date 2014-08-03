@@ -34,4 +34,3 @@ class DbUpdateCommand extends Command
         $command->run($input, $output);
     }
 }
- 

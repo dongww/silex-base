@@ -31,6 +31,7 @@ class DemoController extends Controller
     public function footerAction(Application $app)
     {
         $app->d('这是演示页面页脚。');
+
         return $app->render('DemoCompany/DemoProject:footer.twig');
     }
 
@@ -73,6 +74,7 @@ class DemoController extends Controller
     public function loginAction(Application $app, Request $request)
     {
         $app->d('这是演示登录页面。');
+
         return $app->render('login.twig', array(
             'error'         => $app->trans($app['security.last_error']($request)),
             'last_username' => $app['session']->get('_security.last_username'),

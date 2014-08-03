@@ -7,7 +7,6 @@
 
 namespace App\Asset;
 
-
 use Assetic\Asset\AssetCollection;
 use Assetic\AssetManager;
 use Symfony\Component\Yaml\Yaml;
@@ -32,7 +31,7 @@ class Parser
             if (isset($v['assets'])) {
                 $assets = [];
 
-                foreach ((array)$v['assets'] as $asset) {
+                foreach ((array) $v['assets'] as $asset) {
                     $source = isset($asset['source']) ? $asset['source'] : null;
                     $type = null;
 
