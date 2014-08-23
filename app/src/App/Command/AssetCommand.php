@@ -28,7 +28,7 @@ class AssetCommand extends CommandAbstract
         $am         = Parser::parseFromYaml($configFile);
         $fs         = new Filesystem();
 
-        $fs->remove($targetRoot);
+        $fs->remove($targetRoot . '/vendor');
 
         foreach ($am->getNames() as $name) {
             $assets = $am->get($name);
