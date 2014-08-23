@@ -28,7 +28,7 @@ tables:
                 type: float
             from:
                 type: float
-        parents: [tree] #多对一关系，可多个写入数组
+        belong_to: [tree] #多对一关系，可多个写入数组
         timestamp_able: true #加入created_at, updated_at
     color:
         fields:
